@@ -4,3 +4,7 @@ Our program, which will operate more than one platform, aims users to access bas
 
 ## Some Screens ##
 
+![Loading Screen](https://raw.githubusercontent.com/thelaw44/Cloud-Boxes/master/public/b.jpeg)
+![Login Screen](https://raw.githubusercontent.com/thelaw44/Cloud-Boxes/master/public/a.jpeg)
+![Desktop Screen](https://raw.githubusercontent.com/thelaw44/Cloud-Boxes/master/public/mass%C3%BCst%C3%BC.jpg)
+![Klasör Dizin](https://raw.githubusercontent.com/thelaw44/Cloud-Boxes/master/public/klasorici.png)
