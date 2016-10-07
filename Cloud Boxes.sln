@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Cloud Boxes", "Cloud Boxes.njsproj", "{5953F26E-14CE-4240-93FF-4B7CB6DEBF1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5953F26E-14CE-4240-93FF-4B7CB6DEBF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5953F26E-14CE-4240-93FF-4B7CB6DEBF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5953F26E-14CE-4240-93FF-4B7CB6DEBF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5953F26E-14CE-4240-93FF-4B7CB6DEBF1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

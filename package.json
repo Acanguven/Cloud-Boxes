@@ -1,0 +1,15 @@
+{
+  "name": "cloud-boxes",
+  "version": "0.0.0",
+  "description": "Cloud Boxes",
+  "main": "server.js",
+  "author": {
+    "name": "Zikenzie"
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "node-minify": "^1.3.9",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.8"
+  }
+}
