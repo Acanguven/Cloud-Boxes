@@ -12,13 +12,13 @@ function devtodist(ended) {
         function (cb) {
             new compressor.minify({
                 type: 'gcc',
-                fileIn: [__dirname + '\\..\\public\\dev\\js\\os.js'],
-                fileOut: __dirname + '\\..\\public\\dist\\js\\os.js',
+                fileIn: [__dirname + '/../public/dev/js/os.js'],
+                fileOut: __dirname + '/../public/dist/js/os.js',
                 callback: function (err, min) {
                     new compressor.minify({
                         type: 'uglifyjs',
-                        fileIn: __dirname + '\\..\\public\\dist\\js\\os.js',
-                        fileOut: __dirname + '\\..\\public\\dist\\js\\os.js',
+                        fileIn: __dirname + '/../public/dist/js/os.js',
+                        fileOut: __dirname + '/../public/dist/js/os.js',
                         callback: function (err2, min) {
                             cb(err || err2);
                         }
@@ -29,8 +29,8 @@ function devtodist(ended) {
         function (cb) {
             new compressor.minify({
                 type: 'no-compress',
-                fileIn: [__dirname + '\\..\\public\\dev\\os.html'],
-                fileOut: __dirname + '\\..\\public\\dist\\os.html',
+                fileIn: [__dirname + '/../public/dev/os.html'],
+                fileOut: __dirname + '/../public/dist/os.html',
                 callback: function (err, min) {
                     cb(err)
                 }
@@ -39,8 +39,8 @@ function devtodist(ended) {
         function (cb) {
             new compressor.minify({
                 type: 'no-compress',
-                fileIn: [__dirname + '\\..\\public\\dev\\favicon.ico'],
-                fileOut: __dirname + '\\..\\public\\dist\\favicon.ico',
+                fileIn: [__dirname + '/../public/dev/favicon.ico'],
+                fileOut: __dirname + '/../public/dist/favicon.ico',
                 callback: function (err, min) {
                     cb(err)
                 }
@@ -49,8 +49,8 @@ function devtodist(ended) {
         function (cb) {
             new compressor.minify({
                 type: 'yui-css',
-                fileIn: [__dirname + '\\..\\public\\dev\\css\\main.css'],
-                fileOut: __dirname + '\\..\\public\\dist\\css\\main.css',
+                fileIn: [__dirname + '/../public/dev/css/main.css'],
+                fileOut: __dirname + '/../public/dist/css/main.css',
                 callback: function (err, min) {
                     cb(err)
                 }
