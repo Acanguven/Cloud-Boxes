@@ -1,0 +1,4 @@
+<input type="text" placeholder="Search with speaking or type" ng-model="searchtext" ng-class="{'validSearch' : validSearch}"/>
+<i class="fa fa-microphone" aria-hidden="true" ng-if="recognizing"></i>
+<i class="fa fa-check" aria-hidden="true" ng-if="validSearch && !recognizing" style="color:green;"></i>
+<i class="fa fa-times" aria-hidden="true" ng-if="!validSearch && !recognizing && searchtext.length > 0" style="color:red;"></i>

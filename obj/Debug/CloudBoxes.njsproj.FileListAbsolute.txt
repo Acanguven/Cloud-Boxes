@@ -1,0 +1,2 @@
+G:\Projeler\Bireysel\Cloud Boxes\obj\Debug\CloudBoxes.njsprojResolveAssemblyReference.cache
+G:\Projeler\Bireysel\Cloud Boxes\bin\Microsoft.NodejsTools.WebRole.dll

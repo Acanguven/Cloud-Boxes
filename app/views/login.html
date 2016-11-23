@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="card card-container">
+        <img class="profile-img-card" src="/images/logo.png" alt="" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Username" ng-model="username" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="password" required>
+            <div id="remember" class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" ng-click="tryLogin(username, password)">Sign in</button>
+        </form>
+        <a class="forgot-password">
+            Forgot the password?
+        </a>
+    </div>
+</div>
