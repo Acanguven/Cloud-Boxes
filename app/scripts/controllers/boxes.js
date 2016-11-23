@@ -8,10 +8,9 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-  .controller('BoxesCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('BoxesCtrl', function ($scope, StorageLibrary) {
+        $scope.desktopItems = StorageLibrary.getDesktopItems();
+        $scope.click = function () {
+
+        }
+    });

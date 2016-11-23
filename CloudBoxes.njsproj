@@ -29,6 +29,8 @@
     <Content Include="app\scripts\controllers\boxes.js" />
     <Content Include="app\scripts\controllers\sidebar.js" />
     <Content Include="app\scripts\controllers\speechanalyzer.js" />
+    <Compile Include="app\scripts\directives\desktopbox.js" />
+    <Compile Include="app\scripts\services\sidebarmanager.js" />
     <Compile Include="app\scripts\services\storagelibrary.js" />
     <Compile Include="app\scripts\services\user.js" />
     <Compile Include="Gruntfile.js" />
@@ -46,6 +48,7 @@
     <Folder Include="app\images" />
     <Folder Include="app\scripts" />
     <Folder Include="app\scripts\controllers" />
+    <Folder Include="app\scripts\directives\" />
     <Folder Include="app\scripts\services\" />
     <Folder Include="app\styles" />
     <Folder Include="app\views" />

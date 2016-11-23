@@ -8,16 +8,34 @@
  * Factory in the bireyselApp.
  */
 angular.module('CloudBoxes')
-  .factory('StorageLibrary', function () {
-    // Service logic
-    // ...
+    .factory('StorageLibrary', function () {
 
-    var meaningOfLife = 42;
-
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
+        return {
+            getDesktopItems: function () {
+                return [
+                    {
+                        extension: ".dir",
+                        title: "A folder",
+                        path: "/A\ folder",
+                        position: {
+                            refWidth: 1870,
+                            refHeight: 1000,
+                            x: 300,
+                            y: 300
+                        }
+                    },
+                    {
+                        extension: ".dir",
+                        title: "Programlar",
+                        path: "/Programlar",
+                        position: {
+                            refWidth: 1870,
+                            refHeight: 1000,
+                            x: 300,
+                            y: 300
+                        }
+                    },
+                ];
+            }
+        };
+    });

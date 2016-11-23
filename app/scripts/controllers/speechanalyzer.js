@@ -98,4 +98,8 @@ angular.module('CloudBoxes')
         $scope.recognition.onstart = $scope.onstart;
 
         $scope.recognition.start();
+
+        $scope.$on("$destroy", function () {
+            $scope.recognition.stop();
+        });
     });
