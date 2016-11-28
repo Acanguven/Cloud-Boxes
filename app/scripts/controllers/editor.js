@@ -8,7 +8,7 @@
  * Controller of the CloudBoxes
  */
 angular.module('CloudBoxes')
-    .controller('EditorCtrl', function ($scope, $window, ExtensionManager) {
+    .controller('EditorCtrl', function ($scope, $window, ExtensionManager, $http) {
         $scope.codemirrorInstanceJs = CodeMirror(document.getElementsByClassName("editorInstanceJS")[0], {
             mode: "javascript",
             lineNumbers: true,
@@ -131,12 +131,24 @@ angular.module('CloudBoxes')
                     $scope.codemirrorInstanceCss.setValue($scope.extension.css);
                 });
             }
-
-            // when the file is read it triggers the onload event above.
             reader.readAsText(file);
         }
 
         $scope.loadDraft = function () {
             $("#fileinput").click();
+        }
+
+        $scope.loadExample = function () {
+            $http.get("/scripts/tazdingo.acg").then(function (res) {
+                $scope.extension._id = res.data._id;
+                $scope.extension.name = res.data.name;
+                $scope.extension.html = res.data.html;
+                $scope.extension.css = res.data.css;
+                $scope.extension.js = res.data.js;
+
+                $scope.codemirrorInstanceHtml.setValue($scope.extension.html);
+                $scope.codemirrorInstanceJs.setValue($scope.extension.js);
+                $scope.codemirrorInstanceCss.setValue($scope.extension.css);
+            });
         }
     });

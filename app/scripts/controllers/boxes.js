@@ -8,16 +8,16 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('BoxesCtrl', function ($rootScope,$scope, StorageLibrary, $element, $interval, $timeout, $compile) {
+    .controller('BoxesCtrl', function ($rootScope, $scope, StorageLibrary, $element, $interval, $timeout, $compile) {
         $scope.desktopItems = StorageLibrary.getDesktopItems();
-        
+
 
         $scope.mdown = false;
         $scope.breakEvent = false;
         $scope.mouseDowned = false;
         $scope.contextVisible = false;
         $scope.selectorStarted = false;
-        
+
 
         $scope.click = function () {
             if ($scope.selectorStarted) {
@@ -40,17 +40,17 @@ angular.module('CloudBoxes')
             $scope.selectorRect.y = e.pageY;
             $scope.selectorRect.startX = e.pageX;
             $scope.selectorRect.startY = e.pageY;
-            
+
             $scope.selectorRect.width = 0;
             $scope.selectorRect.height = 0;
-            
+
             $timeout(function () {
                 if (!$scope.breakEvent) {
                     $scope.mdown = true;
                 } else {
                     $scope.mdown = false;
                 }
-            },100);
+            }, 100);
         }
 
         $scope.mousemove = function (e) {
@@ -78,7 +78,7 @@ angular.module('CloudBoxes')
                 $(".selectorRect").css("left", $scope.selectorRect.x);
                 $(".selectorRect").css("top", $scope.selectorRect.y);
             }
-        },0);
+        }, 0);
 
         $scope.mouseup = function (e) {
             if ($scope.selectorStarted) {
@@ -95,7 +95,7 @@ angular.module('CloudBoxes')
 
         $scope.selectorRect = {
             startX: 0,
-            startY:0,
+            startY: 0,
             x: 0,
             y: 0,
             width: 0,
@@ -133,7 +133,8 @@ angular.module('CloudBoxes')
 
         $scope.extensionWindows = [];
         $rootScope.$on('createWindow', function (event, id) {
-            var el = $compile("<" + id + ">"+"</"+ id + ">")($scope);
-            $element.append(el);
+            $element.injector().invoke(function ($compile, $rootScope) {
+                $element.append($compile("<" + id + ">" + "</" + id + ">")($rootScope));
+            });
         });
     });

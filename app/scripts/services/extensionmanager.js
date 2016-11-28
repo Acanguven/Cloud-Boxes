@@ -7,26 +7,58 @@
  * # extensionManager
  * Factory in the CloudBoxes.
  */
+
 angular.module('CloudBoxes')
     .factory('ExtensionManager', function ($rootScope) {
-        var extensionList = [];
+        var extensionList = {};
         var bindings = [];
 
         var setupExtension = function (extension) {
+            var queueLen = angular.module('CloudBoxes')._invokeQueue.length;
+
             if (extension.js.window) {
-                angular.module('CloudBoxes').directive(extension._id, [extension.js.include,function () {
-                    return {
-                        template: extension.html,
-                        restrict: 'E',
-                        replace: true,
-                        link: extension.js.controller,
-                        scope: extension.js.scope
-                    };
-                }]);
+                if (!extensionList[extension._id]) {
+                    angular.module('CloudBoxes').directive(extension._id, function (ExtensionManager, $injector) {
+                        return {
+                            template: "<div class='extensionWindow'><div ng-bind-html='template'></div>",
+                            restrict: 'E',
+                            replace: true,
+                            link: function (scope, element, attrs) {
+                                scope.template = ExtensionManager.getExtensionData(extension._id).html;
+                                ExtensionManager.getExtensionData(extension._id).js(scope, element, attrs, $injector);
+                            },
+                            scope: ExtensionManager.getExtensionData(extension._id).scope
+                        };
+                    });
+
+                    var queue = angular.module('CloudBoxes')._invokeQueue;
+                    for (var i = queueLen; i < queue.length; i++) {
+                        var call = queue[i];
+                        var provider = providers[call[0]];
+                        if (provider) {
+                            provider[call[1]].apply(provider, call[2]);
+                        }
+                    }
+                }
+
+                extensionList[extension._id] = {
+                    js: extension.js.controller,
+                    css: extension.css,
+                    html: extension.html,
+                    scope: extension.js.scope
+                }
+
+                console.log(extensionList[extension._id]);
+
                 setBindings(extension);
             } else {
                 setBindings(extension);
             }
+        }
+
+        function insertArrayAt(array, index, arrayToInsert) {
+            Array.prototype.splice.apply(array, [index, 0].concat(arrayToInsert));
+            return array;
         }
 
         var setBindings = function (extension) {
@@ -56,13 +88,13 @@ angular.module('CloudBoxes')
                                             console.error(extension.name, "Passed " + prop + "[" + x + "] doesnt have valid title");
                                         }
                                     } else {
-                                        console.error(extension.name, "Passed " + prop + "["+x+"] doesnt have valid extension type, you can use * for all");
+                                        console.error(extension.name, "Passed " + prop + "[" + x + "] doesnt have valid extension type, you can use * for all");
                                     }
                                 }
                             } else {
                                 console.error(extension.name, "Passed bind property " + prop + " is not type of Array");
                             }
-                        break;
+                            break;
                     }
                 }
             }
@@ -94,6 +126,9 @@ angular.module('CloudBoxes')
                     return binding.extension == extension;
                 });
             },
+            getExtensionData: function (id) {
+                return extensionList[id];
+            }
         }
     });
 
@@ -103,7 +138,7 @@ angular.module('CloudBoxes')
 */
 
 var CBOutside = function () {
-    var fireEvent = function (type,args) {
+    var fireEvent = function (type, args) {
         var event = new CustomEvent("CBOutside", { detail: { args: args, type: type } });
         document.dispatchEvent(event);
     }
