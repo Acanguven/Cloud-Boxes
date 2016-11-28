@@ -5,6 +5,21 @@ html, body {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    cursor:default;
+}
+
+.row {
+    *zoom: 1;
+    margin-bottom: 10px;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -167,7 +182,7 @@ body {
     text-rendering: optimizeLegibility !important;
     -webkit-text-stroke: .025em rgba(51,51,51,0.50) !important;
     -webkit-font-smoothing: antialiased !important;
-    background: url(/images/wallpaper.jpg) no-repeat center center fixed;
+    background: url(/images/wallpaper2.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -185,16 +200,23 @@ body {
 */
 .sidebar{
     height:100%;
-    width:50px;
+    width:40px;
     float:left;
     background-color:#444;
     text-align:center;
+    z-index:13;
+    position:relative;
 }
 
 .sidebar .step{
-    height: 50px;
+    height: 40px;
     padding: 5px;
+    padding-top: 0px;
     cursor:pointer;
+}
+
+.sidebar .step:first-child{
+    padding-top: 5px;
 }
 
 .sidebar .step:hover {
@@ -283,16 +305,15 @@ body {
 
 .desktopBoxes{
     float:left;
-    width:100%;
     height:100%;
     /* Firefox */
-    width: -moz-calc(100% - 50px);
+    width: -moz-calc(100% - 40px);
     /* WebKit */
-    width: -webkit-calc(100% - 50px);
+    width: -webkit-calc(100% - 40px);
     /* Opera */
-    width: -o-calc(100% - 50px);
+    width: -o-calc(100% - 40px);
     /* Standard */
-    width: calc(100% - 50px);
+    width: calc(100% - 40px);
 }
 
 .desktopfolder {
@@ -328,4 +349,166 @@ body {
 .desktopfolder p{
     color:white;
     text-align:center;
+}
+
+#deskTopElement{
+    width:100%;
+    height:100%;
+}
+
+.selectorRect{
+    background-color:rgba(50, 50, 180, 0.3);
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:1px;
+    height:1px;
+}
+
+.context{
+    position:absolute;
+    background-color:white;
+    min-width:150px;
+    min-height:50px;
+    z-index:200;
+    color:#333;
+}
+
+.context .contextLine{
+    padding-left:3px;
+    padding-right:3px;
+    font-size:15px;
+    height:30px;
+    padding:4px;
+    cursor:default;
+}
+
+.context .contextLine:not(:first-child):hover{
+    background-color:rgba(68, 68, 68, 0.3);
+}
+
+.context .contextLine:not(:first-child){
+    cursor:pointer;
+}
+
+.context .contextLine:first-child{
+    text-align:center;
+    font-size:13px;
+    height:25px;
+}
+
+.context .contextLine span{
+    display:inline-block;
+    width: 25px;
+}
+
+
+.context .contextLine img{
+    height:20px;
+    width:20px;
+}
+
+.context .contextLine:not(:last-child){
+    border-bottom:1px solid #ccc;
+}
+
+
+/*
+
+    upperBar
+
+*/
+
+.upperBar{
+    height:40px;
+    float:left;
+    background: -moz-linear-gradient(left,  rgba(68,68,68,1) 0%, rgba(68,68,68,0.49) 10%, rgba(125,185,232,0) 100%);
+    background: -webkit-linear-gradient(left,  rgba(68,68,68,1) 0%,rgba(68,68,68,0.49) 10%,rgba(125,185,232,0) 100%);
+    background: linear-gradient(to right,  rgba(68,68,68,1) 0%,rgba(68,68,68,0.49) 10%,rgba(125,185,232,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#444444',GradientType=1 );
+    text-align:center;
+    display:block;
+    z-index:12;
+    position:relative;
+    opacity:1;
+
+    /* Firefox */
+    width: -moz-calc(100% - 40px);
+    /* WebKit */
+    width: -webkit-calc(100% - 40px);
+    /* Opera */
+    width: -o-calc(100% - 40px);
+    /* Standard */
+    width: calc(100% - 40px);
+}
+
+.topBar .step{
+    height: 40px;
+    padding: 12px;
+    cursor:pointer;
+    float:left;
+    min-width:40px;
+
+}
+
+.topBar .step:hover {
+    background-color:#555;
+}
+
+.topBar .step .sidebarlogo{
+    width:100%;
+}
+
+.topBar .active{
+    background-color: #666;
+}
+
+.topBar .step i{
+    font-size: 18px;
+}
+
+.topBar .time {
+    float:right;
+    margin-right:10px;
+}
+
+/*
+
+    Editor
+
+*/
+
+.editor{
+    background-color:white;
+    float:left;
+    height:100%;
+    /* Firefox */
+    width: -moz-calc(100% - 40px);
+    /* WebKit */
+    width: -webkit-calc(100% - 40px);
+    /* Opera */
+    width: -o-calc(100% - 40px);
+    /* Standard */
+    width: calc(100% - 40px);
+    height:100%;
+    color:#333;
+}
+
+.editorInner{
+    padding:10px;
+}
+
+.CodeMirror {
+  height: 100%;
+}
+
+.ei{
+    /* Firefox */
+    height: -moz-calc(100% - 40px);
+    /* WebKit */
+    height: -webkit-calc(100% - 40px);
+    /* Opera */
+    height: -o-calc(100% - 40px);
+    /* Standard */
+    height: calc(100% - 40px);
 }

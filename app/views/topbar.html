@@ -1,0 +1,20 @@
+<div class="topBar"  ng-controller="TopbarCtrl">
+    <div title="Extension Library" class="step" ng-class="{'active': activeWindow == 'library'}" ng-click="SidebarManager.setActiveWindow('library')">
+        <i class="fa fa-archive" aria-hidden="true"></i>
+    </div>
+    <div title="Extension Editor" class="step" ng-class="{'active': activeWindow == 'editor'}" ng-click="SidebarManager.setActiveWindow('editor')">
+        <i class="fa fa-code" aria-hidden="true"></i>
+    </div>
+    <div title="Account" class="step" ng-class="{'active': activeWindow == 'account'}" ng-click="SidebarManager.setActiveWindow('account')">
+        <i class="fa fa-user" aria-hidden="true"></i>
+    </div>
+    <div title="Settings" class="step" ng-class="{'active': activeWindow == 'settings'}" ng-click="SidebarManager.setActiveWindow('settings')">
+        <i class="fa fa-wrench" aria-hidden="true"></i>
+    </div>
+    <div title="System Information" class="step" ng-class="{'active': activeWindow == 'system'}" ng-click="SidebarManager.setActiveWindow('system')">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+    </div>
+    <div title="Full Screen" class="step" ng-click="toggleFullScreen()">
+        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+    </div>
+</div>

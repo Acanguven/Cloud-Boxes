@@ -1,0 +1,45 @@
+<div class="editorInner" ng-controller="EditorCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Extension Editor</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input class="form-control" type="text" placeholder="Extension Name" ng-model="extension.name" />
+        </div>
+        <div class="col-md-6">
+            <select class="form-control" type="text" placeholder="Extension Category" ng-model="extension.category">
+                <option value="System">System</option>
+                <option value="Media">Media</option>
+                <option value="Game">Game</option>
+                <option value="Development">Development</option>
+                <option value="Office">Office</option>
+                <option value="Misc">Misc</option>
+            </select>
+        </div>
+    </div>
+    <div class="row instanceContainer">
+        <div class="col-md-5" style="height:100%;">
+            <h4>Javascript</h4>
+            <div class="ei editorInstanceJS"></div>
+        </div>  
+        <div class="col-md-4" style="height:100%;">
+            <h4>Html</h4>
+            <div class="ei editorInstanceHTML"></div>
+        </div> 
+        <div class="col-md-3" style="height:100%;">
+            <h4>Css</h4>
+            <div class="ei editorInstanceCSS"></div>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-success pull-right" style="margin-left:10px;" ng-click="try()">Try!</button>
+            <button class="btn btn-warning pull-right">Publish!</button>
+            <button class="btn btn-default" ng-click="saveDraft()">Save as draft</button>
+            <button class="btn btn-default" ng-click="loadDraft()">Load from draft</button>
+            <input id="fileinput" style="visibility:hidden;" type="file" accept=".acg">
+        </div>
+    </div>
+</div>

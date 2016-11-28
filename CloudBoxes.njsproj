@@ -18,6 +18,8 @@
   <ItemGroup>
     <Content Include=".yo-rc.json" />
     <Content Include="app\images\logo.png" />
+    <Content Include="app\images\wallpaper.jpg" />
+    <Content Include="app\images\wallpaper2.jpg" />
     <Content Include="app\views\boxes.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\sidebar.html" />

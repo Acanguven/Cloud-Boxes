@@ -12,9 +12,6 @@ angular.module('CloudBoxes')
         $scope.recognizing = false;
         $scope.lastUpdate = Date.now();
         $scope.validSearch = false;
-        $scope.recognition = new webkitSpeechRecognition();
-        $scope.recognition.continuous = true;
-        $scope.recognition.interimResults = true;
 
         $scope.reset = function (event) {
             $scope.recognizing = false;
@@ -40,7 +37,7 @@ angular.module('CloudBoxes')
         }
 
         $scope.onerror = function (event, message) {
-            console.log('onerror', event, message);
+            
         }
 
         $scope.onstart = function (event) {
@@ -91,13 +88,25 @@ angular.module('CloudBoxes')
             }
         }
 
+        $scope.refreshApi = function () {
+            $scope.recognition = new webkitSpeechRecognition();
+            $scope.recognition.continuous = true;
+            $scope.recognition.interimResults = true;
+            $scope.recognition.onerror = $scope.onerror;
+            $scope.recognition.onend = $scope.reset;
+            $scope.recognition.onresult = $scope.onresult;
+            $scope.recognition.onstart = $scope.onstart;
+            $scope.recognition.start();
+        }
 
-        $scope.recognition.onerror = $scope.onerror;
-        $scope.recognition.onend = $scope.reset;
-        $scope.recognition.onresult = $scope.onresult;
-        $scope.recognition.onstart = $scope.onstart;
-
-        $scope.recognition.start();
+        var createData = Date.now();
+        $scope.refreshApi();
+        $interval(function () {
+            if (createData + 1000 * 45 < Date.now() && !$scope.recognizing) {
+                $scope.refreshApi();
+                createData = Date.now();
+            }
+        },1000);
 
         $scope.$on("$destroy", function () {
             $scope.recognition.stop();

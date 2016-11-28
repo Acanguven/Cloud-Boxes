@@ -9,7 +9,7 @@
  */
 angular.module('CloudBoxes')
     .factory('UserFactory', function () {
-        var user = null;
+        var user = true; //make it null
 
         
         return {

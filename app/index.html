@@ -10,6 +10,8 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="bower_components/codemirror/theme/dracula.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -43,6 +45,10 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/codemirror/lib/codemirror.js"></script>
+    <script src="bower_components/codemirror/mode/javascript/javascript.js"></script>
+    <script src="bower_components/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="bower_components/codemirror/mode/css/css.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -56,6 +62,14 @@
     <script src="scripts/controllers/speechanalyzer.js"></script>
     <script src="scripts/services/sidebarmanager.js"></script>
     <script src="scripts/directives/desktopbox.js"></script>
+    <script src="scripts/controllers/topbar.js"></script>
+    <script src="scripts/services/extensionmanager.js"></script>
+    <script src="scripts/controllers/editor.js"></script>
+    <script src="scripts/controllers/library.js"></script>
+    <script src="scripts/controllers/account.js"></script>
+    <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/controllers/system.js"></script>
+    <script src="scripts/directives/contextmenu.js"></script>
     <!-- endbuild -->
 </body>
 </html>
