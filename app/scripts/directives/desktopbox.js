@@ -13,6 +13,9 @@ angular.module('CloudBoxes')
             template: "<div class='desktopfolder' ng-class=\"{'selected':selected}\"><i class='fa fa-folder' aria-hidden='true'></i><p>{{model.title}}</p></div>",
             restrict: 'E',
             link: function postLink(scope, element, attrs) {
+                element[0].style.left = (scope.model.position.x) + 'px';
+                element[0].style.top = (scope.model.position.y) + 'px';
+
                 scope.dragging = false;
                 scope.model.selected = false; 
                 scope.selected = false;

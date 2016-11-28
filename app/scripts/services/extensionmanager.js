@@ -48,8 +48,6 @@ angular.module('CloudBoxes')
                     scope: extension.js.scope
                 }
 
-                console.log(extensionList[extension._id]);
-
                 setBindings(extension);
             } else {
                 setBindings(extension);

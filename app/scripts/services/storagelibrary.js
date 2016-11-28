@@ -20,8 +20,8 @@ angular.module('CloudBoxes')
                         position: {
                             refWidth: 1870,
                             refHeight: 1000,
-                            x: 300,
-                            y: 300
+                            x: 150,
+                            y: 150
                         }
                     },
                     {
@@ -31,8 +31,8 @@ angular.module('CloudBoxes')
                         position: {
                             refWidth: 1870,
                             refHeight: 1000,
-                            x: 300,
-                            y: 300
+                            x: 345,
+                            y: 100
                         }
                     },
                 ];

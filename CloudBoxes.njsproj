@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9728cacc-ecbe-480a-bf9f-935701e4e10b}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>Gruntfile.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -20,10 +20,17 @@
     <Content Include="app\images\logo.png" />
     <Content Include="app\images\wallpaper.jpg" />
     <Content Include="app\images\wallpaper2.jpg" />
+    <Content Include="app\scripts\tazdingo.acg" />
+    <Content Include="app\views\account.html" />
     <Content Include="app\views\boxes.html" />
+    <Content Include="app\views\editor.html" />
+    <Content Include="app\views\library.html" />
     <Content Include="app\views\login.html" />
+    <Content Include="app\views\settings.html" />
     <Content Include="app\views\sidebar.html" />
     <Content Include="app\views\speechanalyzer.html" />
+    <Content Include="app\views\system.html" />
+    <Content Include="app\views\topbar.html" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -31,7 +38,15 @@
     <Content Include="app\scripts\controllers\boxes.js" />
     <Content Include="app\scripts\controllers\sidebar.js" />
     <Content Include="app\scripts\controllers\speechanalyzer.js" />
+    <Content Include="app\scripts\controllers\topbar.js" />
+    <Content Include="app\scripts\controllers\account.js" />
+    <Content Include="app\scripts\controllers\editor.js" />
+    <Content Include="app\scripts\controllers\library.js" />
+    <Content Include="app\scripts\controllers\settings.js" />
+    <Content Include="app\scripts\controllers\system.js" />
+    <Compile Include="app\scripts\directives\contextmenu.js" />
     <Compile Include="app\scripts\directives\desktopbox.js" />
+    <Compile Include="app\scripts\services\extensionmanager.js" />
     <Compile Include="app\scripts\services\sidebarmanager.js" />
     <Compile Include="app\scripts\services\storagelibrary.js" />
     <Compile Include="app\scripts\services\user.js" />
