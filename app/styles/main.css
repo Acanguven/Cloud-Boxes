@@ -412,6 +412,75 @@ body {
     border-bottom:1px solid #ccc;
 }
 
+.extensionWindow{
+    background-color: white;
+    position: absolute;
+    min-width: 300px;
+    min-height: 300px;
+    color:#333;
+}
+
+.extensionWindow .header{
+    border-bottom: 1px solid #ccc;
+    height: 25px;
+}
+
+.extensionWindow .header *{
+    float: left;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.extensionWindow .header .title{
+    color:#333;
+}
+
+.extensionWindow .header i{
+    margin-top: 4px;
+    font-size: 18px;
+    margin-right: 5px;
+    margin-left:5px;
+}
+
+.extensionWindow .header img{
+    margin-top: 4px;
+    height: 16px;
+    margin-right: 5px;
+    margin-left:5px;
+}
+
+.extensionWindow .header .options{
+    float: right;
+    margin-top: 0px;
+    height: 100%;
+
+}
+
+.extensionWindow .header .options span{
+    margin-top: 0px;
+    padding: 2px;
+    height: 100%;
+}
+.extensionWindow .header .options span:hover{
+    background-color: #ccc;
+}
+
+.extensionWindow .header .options span:last-child:hover{
+    background-color: red;
+    color:white;
+}
+
+.extensionWindow .header .options span i{
+    font-size:12px;
+}
+
+.extensionWindow .title{
+    color:red;
+}
+
+.windowContent{
+    clear:both;
+}
 
 /*
 

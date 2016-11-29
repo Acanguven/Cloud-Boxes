@@ -20,12 +20,14 @@ angular.module('CloudBoxes')
                 if (!extensionList[extension._id]) {
                     angular.module('CloudBoxes').directive(extension._id, function (ExtensionManager, $injector) {
                         return {
-                            template: "<div class='extensionWindow'><div ng-bind-html='template'></div>",
+                            template: "<div class='extensionWindow' extensionwindow><div class='header'><i ng-if='window.fa && !window.img' class='fa' ng-class='window.fa'></i><img ng-if='window.img' ng-src='{{window.img}}'/><div class='title'>{{window.title}}</div><div class='options'><span><i class='fa fa-window-minimize' aria-hidden='true'></i></span><span><i class='fa fa-window-maximize' aria-hidden='true'></i><i class='fa fa-window-restore' aria-hidden='true'></i></span><span><i class='fa fa-times' aria-hidden='true'></i></span></div></div><div class='windowContent' ng-bind-html='template'></div></div>",
                             restrict: 'E',
                             replace: true,
                             link: function (scope, element, attrs) {
                                 scope.template = ExtensionManager.getExtensionData(extension._id).html;
-                                ExtensionManager.getExtensionData(extension._id).js(scope, element, attrs, $injector);
+                                var scopeElement = angular.element(element[0].querySelector('.windowContent'))
+                                scope.window = extension.js.window;
+                                ExtensionManager.getExtensionData(extension._id).js(scope, scopeElement, attrs, $injector);
                             },
                             scope: ExtensionManager.getExtensionData(extension._id).scope
                         };
