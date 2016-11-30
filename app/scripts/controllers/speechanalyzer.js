@@ -73,6 +73,7 @@ angular.module('CloudBoxes')
         ]
 
         $scope.searchValidation = function () {
+            //get list from extension manager here
             var searchInput = $scope.searchtext;
             for (var x = 0; x < regexList.length; x++) {
                 var m;

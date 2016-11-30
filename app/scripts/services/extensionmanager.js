@@ -20,7 +20,7 @@ angular.module('CloudBoxes')
                 if (!extensionList[extension._id]) {
                     angular.module('CloudBoxes').directive(extension._id, function (ExtensionManager, $injector) {
                         return {
-                            template: "<div class='extensionWindow' extensionwindow><div class='header'><i ng-if='window.fa && !window.img' class='fa' ng-class='window.fa'></i><img ng-if='window.img' ng-src='{{window.img}}'/><div class='title'>{{window.title}}</div><div class='options'><span><i class='fa fa-window-minimize' aria-hidden='true'></i></span><span><i class='fa fa-window-maximize' aria-hidden='true'></i><i class='fa fa-window-restore' aria-hidden='true'></i></span><span><i class='fa fa-times' aria-hidden='true'></i></span></div></div><div class='windowContent' ng-bind-html='template'></div></div>",
+                            template: "<div class='extensionWindow' extensionwindow ng-show='!minimized' ng-class=\"{'maximized':(windowStatus==2)}\"><div class='header'><i ng-if='window.fa && !window.img' class='fa' ng-class='window.fa'></i><img ng-if='window.img' ng-src='{{window.img}}'/><div class='title'>{{window.title}}</div><div class='options'><span ng-click='minimize()'><i class='fa fa-window-minimize' aria-hidden='true'></i></span><span ng-click='windowStatusUpdate(2)' ng-if='windowStatus != 2'><i class='fa fa-window-maximize' aria-hidden='true'></i></span><span  ng-click='windowStatusUpdate(1)' ng-if='windowStatus == 2'><i class='fa fa-window-restore' aria-hidden='true'></i></span><span  ng-click='windowClose()'><i class='fa fa-times' aria-hidden='true'></i></span></div></div><div class='windowContent' bindhtmlcompile='template'></div></div>",
                             restrict: 'E',
                             replace: true,
                             link: function (scope, element, attrs) {
@@ -28,8 +28,7 @@ angular.module('CloudBoxes')
                                 var scopeElement = angular.element(element[0].querySelector('.windowContent'))
                                 scope.window = extension.js.window;
                                 ExtensionManager.getExtensionData(extension._id).js(scope, scopeElement, attrs, $injector);
-                            },
-                            scope: ExtensionManager.getExtensionData(extension._id).scope
+                            }
                         };
                     });
 
@@ -47,7 +46,6 @@ angular.module('CloudBoxes')
                     js: extension.js.controller,
                     css: extension.css,
                     html: extension.html,
-                    scope: extension.js.scope
                 }
 
                 setBindings(extension);
@@ -95,6 +93,28 @@ angular.module('CloudBoxes')
                                 console.error(extension.name, "Passed bind property " + prop + " is not type of Array");
                             }
                             break;
+                        case "click":
+                            if (extension.js.bind[prop] instanceof Array) {
+                                for (var x = 0; x < extension.js.bind[prop].length; x++) {
+                                    if (extension.js.bind[prop][x].extension && typeof extension.js.bind[prop][x].extension == 'string') {
+                                        if (extension.js.bind[prop][x].action && typeof extension.js.bind[prop][x].action == 'function') {
+                                            bindings.push({
+                                                type: "click",
+                                                extensionid: extension._id,
+                                                extension: extension.js.bind[prop][x].extension,
+                                                action: extension.js.bind[prop][x].action,
+                                            });
+                                        } else {
+                                            console.error(extension.name, "Passed " + prop + "[" + x + "] doesnt have valid action, pass a function");
+                                        }
+                                    } else {
+                                        console.error(extension.name, "Passed " + prop + "[" + x + "] doesnt have valid extension type, you can use * for all");
+                                    }
+                                }
+                            } else {
+                                console.error(extension.name, "Passed bind property " + prop + " is not type of Array");
+                            }
+                            break;
                     }
                 }
             }
@@ -106,8 +126,8 @@ angular.module('CloudBoxes')
             });
         }
 
-        this.createWindow = function (args) {
-            $rootScope.$emit('createWindow', args.id);
+        this.createWindow = function (params) {
+            $rootScope.$emit('createWindow', params);
         }
 
         var self = this;
@@ -123,11 +143,16 @@ angular.module('CloudBoxes')
             },
             getContextBindings: function (extension) {
                 return bindings.filter(function (binding) {
-                    return binding.extension == extension;
+                    return binding.extension == extension && binding.type == "contextmenu";
                 });
             },
             getExtensionData: function (id) {
                 return extensionList[id];
+            },
+            getClickBindings: function (extension) {
+                return bindings.filter(function (binding) {
+                    return binding.extension == extension && binding.type == "click";
+                });
             }
         }
     });
@@ -143,8 +168,8 @@ var CBOutside = function () {
         document.dispatchEvent(event);
     }
 
-    this.createWindow = function (id) {
-        fireEvent("createWindow", { id: id });
+    this.createWindow = function (id, args) {
+        fireEvent("createWindow", { id: id, args:args });
     }
 }
 

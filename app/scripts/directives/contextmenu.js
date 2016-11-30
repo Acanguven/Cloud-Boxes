@@ -28,6 +28,7 @@ angular.module('CloudBoxes')
                 }, true);
 
                 element.bind('click', function (e) {
+                    scope.$parent.$emit('clickonbox');
                     e.stopPropagation();
                 });
             },

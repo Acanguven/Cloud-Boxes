@@ -8,7 +8,7 @@
  * Controller of the CloudBoxes
  */
 angular.module('CloudBoxes')
-    .controller('EditorCtrl', function ($scope, $window, ExtensionManager, $http) {
+    .controller('EditorCtrl', function ($scope, $window, ExtensionManager, $http, SidebarManager) {
         $scope.codemirrorInstanceJs = CodeMirror(document.getElementsByClassName("editorInstanceJS")[0], {
             mode: "javascript",
             lineNumbers: true,
@@ -75,6 +75,7 @@ angular.module('CloudBoxes')
             try {
                 $scope.extension.js = eval($scope.extension.js);
                 ExtensionManager.tryExtension($scope.extension);
+                SidebarManager.setActiveWindow("boxes");
             } catch (e) {
                 alert(e);
             }  
@@ -131,7 +132,11 @@ angular.module('CloudBoxes')
                     $scope.codemirrorInstanceCss.setValue($scope.extension.css);
                 });
             }
-            reader.readAsText(file);
+            try {
+                reader.readAsText(file);
+            } catch (e) {
+
+            }
         }
 
         $scope.loadDraft = function () {

@@ -1,5 +1,5 @@
-<div class="noselect" id="deskTopElement" ng-controller="BoxesCtrl">
-    <div class="selectorRect" ng-show="selectorRect.visible"></div>
-    <desktopbox ng-repeat="item in desktopItems" model="item"></desktopbox>
+<div id="deskTopElement" ng-controller="BoxesCtrl">
+    <selectorrect target="deskTopElement" rectangleflag="rectangleflag"></selectorrect>
+    <desktopbox ng-repeat="item in desktopItems" model="item" draggable clickable></desktopbox>
     <contextmenu ng-if="contextVisible" targets="selectedObjects" pos="contextpos"></contextmenu>
 </div>
