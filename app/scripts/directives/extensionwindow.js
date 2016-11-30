@@ -100,7 +100,6 @@ angular.module('CloudBoxes')
                 scope.windowStatus = 1; //1 normal //2 maximized
 
                 scope.windowClose = function () {
-                    console.log(element);
                     element.remove();
                 }
 

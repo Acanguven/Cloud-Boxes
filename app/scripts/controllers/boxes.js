@@ -59,12 +59,11 @@ angular.module('CloudBoxes')
         });
 
 
-        $scope.extensionWindows = [];
         $rootScope.$on('createWindow', function (event, params) {
             $element.injector().invoke(function ($compile, $rootScope) {
-                $element.append($compile("<" + params.id + ">" + "</" + params.id + ">")($rootScope));
-                var innerScope = angular.element($element.children().last()).scope().$$childTail;
-                innerScope.ready(params);
+                var newScope = $scope.$new(true);
+                newScope.args = params.args;
+                $element.append($compile("<" + params.id + ">" + "</" + params.id + ">")(newScope));
             });
         });
     });
