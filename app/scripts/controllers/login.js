@@ -9,15 +9,9 @@
  */
 angular.module('CloudBoxes')
     .controller('LoginCtrl', function ($scope, UserFactory) {
+
+
         $scope.tryLogin = function (username, password) {
-            console.log("Logging in...");
-
-
-            //if valid user
-            UserFactory.setUser({
-                name: "Ahmet Can",
-                username: username,
-                storage: 20
-            });
+            UserFactory.login(username, password);
         }
     });

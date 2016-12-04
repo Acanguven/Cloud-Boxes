@@ -6,7 +6,7 @@
     <ProjectGuid>{9728cacc-ecbe-480a-bf9f-935701e4e10b}</ProjectGuid>
     <ProjectHome />
     <ProjectView>ProjectFiles</ProjectView>
-    <StartupFile>Gruntfile.js</StartupFile>
+    <StartupFile>bin\www</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
@@ -16,6 +16,15 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="app.js" />
+    <Content Include="app\scripts\directives\item.js" />
+    <Content Include="app\scripts\services\iconmanager.js" />
+    <Content Include="app\scripts\services\cssmanager.js" />
+    <Compile Include="models\extension.js" />
+    <Compile Include="models\preferences.js" />
+    <Compile Include="models\user.js" />
+    <Compile Include="routes\filesystem.js" />
+    <Compile Include="routes\user.js" />
     <Content Include=".yo-rc.json" />
     <Content Include="app\images\logo.png" />
     <Content Include="app\images\wallpaper.jpg" />
@@ -31,6 +40,8 @@
     <Content Include="app\views\speechanalyzer.html" />
     <Content Include="app\views\system.html" />
     <Content Include="app\views\topbar.html" />
+    <Content Include="bin\Microsoft.NodejsTools.WebRole.dll" />
+    <Content Include="bin\www" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -44,12 +55,18 @@
     <Content Include="app\scripts\controllers\library.js" />
     <Content Include="app\scripts\controllers\settings.js" />
     <Content Include="app\scripts\controllers\system.js" />
-    <Compile Include="app\scripts\directives\contextmenu.js" />
-    <Compile Include="app\scripts\directives\desktopbox.js" />
-    <Compile Include="app\scripts\services\extensionmanager.js" />
-    <Compile Include="app\scripts\services\sidebarmanager.js" />
-    <Compile Include="app\scripts\services\storagelibrary.js" />
-    <Compile Include="app\scripts\services\user.js" />
+    <Content Include="app\scripts\directives\bindhtmlcompile.js" />
+    <Content Include="app\scripts\directives\clickable.js" />
+    <Content Include="app\scripts\directives\contextmenu.js" />
+    <Content Include="app\scripts\directives\desktopbox.js" />
+    <Content Include="app\scripts\directives\draggable.js" />
+    <Content Include="app\scripts\directives\extensionwindow.js" />
+    <Content Include="app\scripts\directives\selectorrect.js" />
+    <Content Include="app\scripts\services\extensionmanager.js" />
+    <Content Include="app\scripts\services\sidebarmanager.js" />
+    <Content Include="app\scripts\services\storagelibrary.js" />
+    <Content Include="app\scripts\services\user.js" />
+    <Compile Include="config\database.js" />
     <Compile Include="Gruntfile.js" />
     <Content Include="app\robots.txt" />
     <Content Include="app\404.html" />
@@ -69,14 +86,42 @@
     <Folder Include="app\scripts\services\" />
     <Folder Include="app\styles" />
     <Folder Include="app\views" />
+    <Folder Include="bin\" />
+    <Folder Include="models\" />
+    <Folder Include="config\" />
+    <Folder Include="routes\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\autoprefixer-core\" />
+    <Folder Include="typings\globals\bcrypt-nodejs\" />
+    <Folder Include="typings\globals\body-parser\" />
+    <Folder Include="typings\globals\cookie-parser\" />
+    <Folder Include="typings\globals\cors\" />
+    <Folder Include="typings\globals\debug\" />
+    <Folder Include="typings\globals\express-validator\" />
+    <Folder Include="typings\globals\express\" />
+    <Folder Include="typings\globals\jade\" />
+    <Folder Include="typings\globals\jsonwebtoken\" />
+    <Folder Include="typings\globals\mongoose\" />
+    <Folder Include="typings\globals\morgan\" />
     <Folder Include="typings\globals\node\" />
+    <Folder Include="typings\globals\serve-favicon\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="typings\globals\autoprefixer-core\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\bcrypt-nodejs\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\body-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cookie-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cors\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\debug\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express-validator\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jade\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jsonwebtoken\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mongoose\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\morgan\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\serve-favicon\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

@@ -7,7 +7,7 @@
  * # extensionwindow
  */
 angular.module('CloudBoxes')
-  	.directive('extensionwindow', function ($interval) {
+    .directive('extensionwindow', function ($interval, Windowmanager) {
 		return {
 			restrict: 'A',
 			link: function postLink(scope, element, attrs) {
@@ -101,6 +101,7 @@ angular.module('CloudBoxes')
 
                 scope.windowClose = function () {
                     element.remove();
+                    scope.$destroy();
                 }
 
                 scope.minimize = function () {
@@ -110,6 +111,11 @@ angular.module('CloudBoxes')
                 scope.windowStatusUpdate = function (type) {
                     scope.windowStatus = type;
                 }
+
+                Windowmanager.registerWindow(scope);
+                scope.$on("$destroy", function () {
+                    Windowmanager.destroyWindow(scope);
+                });
 			}
     	};
   	});

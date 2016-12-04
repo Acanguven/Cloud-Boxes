@@ -9,7 +9,10 @@
  */
 angular.module('CloudBoxes')
     .controller('BoxesCtrl', function ($rootScope, $scope, StorageLibrary, $element, $interval, $timeout, $compile) {
-        $scope.desktopItems = StorageLibrary.getDesktopItems();
+        StorageLibrary.getDesktopItems(function (list) {
+            $scope.desktopItems = list;
+        });
+        $scope.path = "/";
         $scope.rectangleflag = false;
         $scope.contextVisible = false;
 

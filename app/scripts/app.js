@@ -27,4 +27,60 @@ angular
             $compileProvider: $compileProvider,
             $provide: $provide
         };
-    });
+    }).config(function ($httpProvider) {
+        $httpProvider.interceptors.push(function ($q) {
+            return {
+                'request': function (config) {
+                    /* Development Settings */
+                    var restUrl = location.origin + ":3000";
+                    if (config.url.indexOf("views") == -1 && location.hostname == "localhost" && config.url.indexOf(".acg") == -1) {
+                        config.url = restUrl + config.url;
+                    }
+                    /* Development Settings */
+
+
+                    if (config.url.indexOf("/api/") > -1) {
+                        if (localStorage.getItem('token')) {
+                            var token = localStorage.getItem('token');
+                            config.headers['Authorization'] = token;
+                        }
+                    }
+
+                    return config || $q.when(config);
+                }
+            }
+        });
+
+        $httpProvider.interceptors.push(function ($q) {
+            return {
+                'response': function (response) {
+
+                    if (response.data && response.data.token) {
+                        localStorage.setItem('token', response.data.token);
+                    }
+
+                    if (response.data && response.data.message) {
+                        switch (response.data.message) {
+                            case "Token error":
+                            case "Token decoding error":
+                            case "Token expired":
+                            case "Token user does not exist":
+                                //alert("redirecting");
+                                //top.location.href = location.origin;
+                                break;
+                        }
+                    }
+
+                    return response;
+                }
+            }
+        });
+    }).run(function ($http, $rootScope, $timeout, UserFactory) {
+        if (localStorage.getItem('token')) {
+            $http.get("/api/user/continueTokenSession").then(function (res) {
+                if (res.data.token) {
+                    UserFactory.setUser(res.data);
+                }
+            });
+        }
+    })

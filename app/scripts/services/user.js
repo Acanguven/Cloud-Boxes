@@ -8,16 +8,23 @@
  * Factory in the bireyselApp.
  */
 angular.module('CloudBoxes')
-    .factory('UserFactory', function () {
-        var user = true; //make it null
+    .factory('UserFactory', function ($http) {
+        var user = null;
 
         
         return {
             userLoggedIn: function () {
                 return user !== null;
             },
-            setUser: function (loggedInUser) {
-                user = loggedInUser;
+            setUser: function (i) {
+                user = i;
+            },
+            login: function (username, password) {
+                $http.post("/api/user/login", { username: username, password: password }).then(function (res) {
+                    if (res.data.token) {
+                        user = res.data;
+                    }
+                });
             }
         };
     });

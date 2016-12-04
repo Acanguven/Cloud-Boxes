@@ -9,13 +9,18 @@
  */
 
 angular.module('CloudBoxes')
-    .factory('ExtensionManager', function ($rootScope) {
+    .factory('ExtensionManager', function ($rootScope, $injector, Cssmanager) {
         var extensionList = {};
         var bindings = [];
 
         var setupExtension = function (extension) {
-            var queueLen = angular.module('CloudBoxes')._invokeQueue.length;
+            if (extension.js.oninstall) {
+                extension.js.oninstall($injector);
+            }
 
+            Cssmanager.addUpdateCss(extension._id, extension.css);
+
+            var queueLen = angular.module('CloudBoxes')._invokeQueue.length;
             if (extension.js.window) {
                 if (!extensionList[extension._id]) {
                     angular.module('CloudBoxes').directive(extension._id, function (ExtensionManager, $injector) {
@@ -143,7 +148,7 @@ angular.module('CloudBoxes')
             },
             getContextBindings: function (extension) {
                 return bindings.filter(function (binding) {
-                    return binding.extension == extension && binding.type == "contextmenu";
+                    return (binding.extension == extension || binding.extension == "!") && binding.type == "contextmenu";
                 });
             },
             getExtensionData: function (id) {
@@ -169,7 +174,7 @@ var CBOutside = function () {
     }
 
     this.createWindow = function (id, args) {
-        fireEvent("createWindow", { id: id, args:args });
+        fireEvent("createWindow", { id: id, args: args });
     }
 }
 

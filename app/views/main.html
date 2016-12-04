@@ -3,7 +3,7 @@
     <div class="mainArea" ng-class="{'blur': !UserFactory.userLoggedIn()}">
         <div class="sidebar" ng-include="'views/sidebar.html'" ng-controller="SidebarCtrl"></div>
         <div class="upperBar" ng-include="'views/topbar.html'"></div>
-        <div class="desktopBoxes" onselectstart="return false;" ng-include="'views/boxes.html'" ng-show="activeWindow == 'boxes'"></div>
+        <div class="desktopBoxes" ng-if="UserFactory.userLoggedIn()" onselectstart="return false;" ng-include="'views/boxes.html'" ng-show="activeWindow == 'boxes'"></div>
         <div class="speechanalyzer" ng-include="'views/speechanalyzer.html'" ng-controller="SpeechanalyzerCtrl" ng-if="activeWindow == 'boxes'"></div>
         <div class="editor" ng-include="'views/editor.html'" ng-show="activeWindow == 'editor'"></div>
         <div style="height:100%;" ng-include="'views/account.html'" ng-if="activeWindow == 'account'"></div>

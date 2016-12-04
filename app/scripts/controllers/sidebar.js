@@ -8,9 +8,10 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('SidebarCtrl', function ($scope, SidebarManager, $element) {
+    .controller('SidebarCtrl', function ($scope, SidebarManager, $element, Windowmanager) {
         $scope.activeWindow = "";
         $scope.SidebarManager = SidebarManager;
+        $scope.runningWindows = Windowmanager.getRunningWindows();
 
         $scope.$watch(function () {
             return SidebarManager.getActiveWindow()

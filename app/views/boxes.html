@@ -1,5 +1,6 @@
 <div id="deskTopElement" ng-controller="BoxesCtrl">
     <selectorrect target="deskTopElement" rectangleflag="rectangleflag"></selectorrect>
-    <desktopbox ng-repeat="item in desktopItems" model="item" draggable clickable></desktopbox>
-    <contextmenu ng-if="contextVisible" targets="selectedObjects" pos="contextpos"></contextmenu>
+    <box ng-repeat="item in desktopItems | filter: { extension: '.dir' }" bootstrapped="usebootstrap" model="item" draggable clickable></box>
+    <item ng-repeat="item in desktopItems | filter: { extension: '!.dir' }" bootstrapped="usebootstrap" model="item" draggable clickable></item>
+    <contextmenu ng-if="contextVisible" targets="selectedObjects" pos="contextpos" path="path"></contextmenu>
 </div>

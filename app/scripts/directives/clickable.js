@@ -36,9 +36,11 @@ angular.module('CloudBoxes')
 
                 scope.$on('unselect', function (event, target) {
                     if (!target || target != element) {
-                        scope.$apply(function () {
-                            scope.$$childHead.model.selected = false;
-                        });
+                        if (scope.$$childHead) {
+                            scope.$apply(function () {
+                                scope.$$childHead.model.selected = false;
+                            });
+                        }
                     }
                 });
 
