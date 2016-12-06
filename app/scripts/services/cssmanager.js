@@ -12,21 +12,22 @@ angular.module('CloudBoxes')
         var installedCSS = [];
 
         function updateCSS(name, data) {
+
             var existed = document.getElementById("extensioncss-" + name);
             if (existed) {
-                existed.styleSheet.cssText = data;
+                existed.remove();
+            }
+            var css = data,
+                head = document.head || document.getElementsByTagName('head')[0],
+                style = document.createElement('style');
+            style.type = 'text/css';
+            style.id = "extensioncss-" + name;
+            if (style.styleSheet) {
+                style.styleSheet.cssText = css;
             } else {
-                var css = data,
-                    head = document.head || document.getElementsByTagName('head')[0],
-                    style = document.createElement('style');
-                style.type = 'text/css';
-                if (style.styleSheet) {
-                    style.styleSheet.cssText = css;
-                } else {
-                    style.appendChild(document.createTextNode(css));
-                }
-                head.appendChild(style);
-            } 
+                style.appendChild(document.createTextNode(css));
+            }
+            head.appendChild(style);
         }
 
         function removeCSS(name, data) {

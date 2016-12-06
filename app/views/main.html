@@ -7,7 +7,7 @@
         <div class="speechanalyzer" ng-include="'views/speechanalyzer.html'" ng-controller="SpeechanalyzerCtrl" ng-if="activeWindow == 'boxes'"></div>
         <div class="editor" ng-include="'views/editor.html'" ng-show="activeWindow == 'editor'"></div>
         <div style="height:100%;" ng-include="'views/account.html'" ng-if="activeWindow == 'account'"></div>
-        <div style="height:100%;" ng-include="'views/library.html'" ng-if="activeWindow == 'library'"></div>
+        <div class="library" style="height:100%;" ng-include="'views/library.html'" ng-if="activeWindow == 'library'"></div>
         <div style="height:100%;" ng-include="'views/system.html'" ng-if="activeWindow == 'system'"></div>
         <div style="height:100%;" ng-include="'views/settings.html'" ng-if="activeWindow == 'settings'"></div>
     </div>

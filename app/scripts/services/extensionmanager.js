@@ -12,18 +12,19 @@ angular.module('CloudBoxes')
     .factory('ExtensionManager', function ($rootScope, $injector, Cssmanager) {
         var extensionList = {};
         var bindings = [];
+        var sidebars = [];
 
         var setupExtension = function (extension) {
             if (extension.js.oninstall) {
                 extension.js.oninstall($injector);
             }
-
             Cssmanager.addUpdateCss(extension._id, extension.css);
 
             var queueLen = angular.module('CloudBoxes')._invokeQueue.length;
             if (extension.js.window) {
                 if (!extensionList[extension._id]) {
-                    angular.module('CloudBoxes').directive(extension._id, function (ExtensionManager, $injector) {
+                    
+                    angular.module('CloudBoxes').directive("d"+extension._id, function (ExtensionManager, $injector) {
                         return {
                             template: "<div class='extensionWindow' extensionwindow ng-show='!minimized' ng-class=\"{'maximized':(windowStatus==2)}\"><div class='header'><i ng-if='window.fa && !window.img' class='fa' ng-class='window.fa'></i><img ng-if='window.img' ng-src='{{window.img}}'/><div class='title'>{{window.title}}</div><div class='options'><span ng-click='minimize()'><i class='fa fa-window-minimize' aria-hidden='true'></i></span><span ng-click='windowStatusUpdate(2)' ng-if='windowStatus != 2'><i class='fa fa-window-maximize' aria-hidden='true'></i></span><span  ng-click='windowStatusUpdate(1)' ng-if='windowStatus == 2'><i class='fa fa-window-restore' aria-hidden='true'></i></span><span  ng-click='windowClose()'><i class='fa fa-times' aria-hidden='true'></i></span></div></div><div class='windowContent' bindhtmlcompile='template'></div></div>",
                             restrict: 'E',
@@ -56,6 +57,12 @@ angular.module('CloudBoxes')
                 setBindings(extension);
             } else {
                 setBindings(extension);
+            }
+
+            if (extension.js.sidebar) {
+                var sidebar = angular.copy(extension.js.sidebar);
+                sidebar._id = extension._id;
+                sidebars.push(sidebar);
             }
         }
 
@@ -148,7 +155,7 @@ angular.module('CloudBoxes')
             },
             getContextBindings: function (extension) {
                 return bindings.filter(function (binding) {
-                    return (binding.extension == extension || binding.extension == "!") && binding.type == "contextmenu";
+                    return ((extension != "" && binding.extension == "*") || (binding.extension == extension || binding.extension == "!")) && binding.type == "contextmenu";
                 });
             },
             getExtensionData: function (id) {
@@ -156,8 +163,25 @@ angular.module('CloudBoxes')
             },
             getClickBindings: function (extension) {
                 return bindings.filter(function (binding) {
-                    return binding.extension == extension && binding.type == "click";
+                    return ((extension != "" && binding.extension == "*") || (binding.extension == extension || binding.extension == "!")) && binding.type == "click";
                 });
+            },
+            getSidebarApps: function (extension) {
+                return sidebars;
+            },
+            updateExtensions: function (extensions) {
+                for (var x = 0; x < extensions.length; x++) {
+                    var extension = extensions[x];
+                    var dataParsed = JSON.parse(extension.data);
+                    extension.css = dataParsed.css;
+                    extension.html = dataParsed.html;
+                    try {
+                        extension.js = eval(dataParsed.js);
+                        setupExtension(extension);
+                    } catch (e) {
+                        alert(e);
+                    }
+                }
             }
         }
     });

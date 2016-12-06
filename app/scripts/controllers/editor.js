@@ -8,7 +8,9 @@
  * Controller of the CloudBoxes
  */
 angular.module('CloudBoxes')
-    .controller('EditorCtrl', function ($scope, $window, ExtensionManager, $http, SidebarManager) {
+    .controller('EditorCtrl', function ($scope, $window, ExtensionManager, $http, SidebarManager, $rootScope) {
+        $scope.initName = "";
+
         $scope.codemirrorInstanceJs = CodeMirror(document.getElementsByClassName("editorInstanceJS")[0], {
             mode: "javascript",
             lineNumbers: true,
@@ -54,17 +56,22 @@ angular.module('CloudBoxes')
             js: "",
             name: "",
             category: "Misc",
-            _id: makeid()
+            _id: makeid(),
+            newCreated: true
         }
 
         function makeid() {
             var text = "";
             var possible = "abcdefghijklmnopqrstuvwxyz";
 
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < 15; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-            return text;
+            return "off" + text;
+        }
+
+        $scope.isOnlineData = function () {
+            return $scope.extension._id.indexOf("off") != 0;
         }
 
         $scope.try = function () {
@@ -78,7 +85,7 @@ angular.module('CloudBoxes')
                 SidebarManager.setActiveWindow("boxes");
             } catch (e) {
                 alert(e);
-            }  
+            }
         }
 
         $scope.saveDraft = function () {
@@ -155,5 +162,78 @@ angular.module('CloudBoxes')
                 $scope.codemirrorInstanceJs.setValue($scope.extension.js);
                 $scope.codemirrorInstanceCss.setValue($scope.extension.css);
             });
+        }
+
+        $rootScope.$on("loadextension", function (event, obj) {
+            $http.get("/api/extensions/get/" + obj.id).then(function (res) {
+                var ed = JSON.parse(res.data.data);
+                $scope.extension._id = res.data._id;
+                $scope.extension.name = res.data.name;
+                $scope.extension.category = res.data.category;
+                $scope.extension.html = ed.html;
+                $scope.extension.css = ed.css;
+                $scope.extension.js = ed.js;
+                $scope.extension.newCreated = false;
+                $scope.initName = angular.copy($scope.extension.name);
+
+                $scope.codemirrorInstanceHtml.setValue($scope.extension.html);
+                $scope.codemirrorInstanceJs.setValue($scope.extension.js);
+                $scope.codemirrorInstanceCss.setValue($scope.extension.css);
+            });
+        });
+
+        $scope.saveOnline = function () {
+            if ($scope.extension.name.length == 0) {
+                alert("Extension name ?");
+                return;
+            }
+            $scope.extension.html = $scope.codemirrorInstanceHtml.getValue();
+            $scope.extension.css = $scope.codemirrorInstanceCss.getValue();
+            $scope.extension.js = $scope.codemirrorInstanceJs.getValue();
+
+            if ($scope.extension.newCreated) {
+                $http.post("/api/extensions/new", {
+                    name: $scope.extension.name,
+                    description: "A new extension!",
+                    data: JSON.stringify({
+                        js: $scope.extension.js,
+                        css: $scope.extension.css,
+                        html: $scope.extension.html
+                    }),
+                    category: $scope.extension.category,
+                    live: false
+                }).then(function (res) {
+                    if (res.data.success) {
+                        $scope.extension._id = res.data.id;
+                    }
+                });
+            } else {
+                $http.post("/api/extensions/edit/" + $scope.extension._id, {
+                    name: $scope.extension.name,
+                    description: "A new extension!",
+                    data: JSON.stringify({
+                        js: $scope.extension.js,
+                        css: $scope.extension.css,
+                        html: $scope.extension.html
+                    }),
+                    category: $scope.extension.category,
+                    live: false
+                });
+            }
+        }
+
+        $scope.createNew = function () {
+            $scope.extension = {
+                html: "",
+                css: "",
+                js: "",
+                name: "",
+                category: "Misc",
+                _id: makeid(),
+                newCreated: true
+            }
+            $scope.codemirrorInstanceHtml.setValue($scope.extension.html);
+            $scope.codemirrorInstanceJs.setValue($scope.extension.js);
+            $scope.codemirrorInstanceCss.setValue($scope.extension.css);
         }
     });

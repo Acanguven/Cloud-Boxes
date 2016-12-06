@@ -1,1 +1,60 @@
-<p>This is the library view.</p>
+<div class="libraryinner" ng-controller="LibraryCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Extension Library</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="row">
+                    <input class="form-control" type="text" placeholder="Extension Name" ng-model="extension.name" />
+                </div>
+                <div class="row">
+                    <div class="extensionFinderResults">
+                        <ul class="list-group">
+                            <li class="list-group-item liveexts" ng-repeat="ext in extensions | limitTo: 10 | filter:extension" ng-if="ext.live" ng-click="click(ext)">
+                                {{ext.name}} <i class="fa fa-cogs text-danger" aria-hidden="true" ng-if="ext.official"></i>
+                                <span class="pull-right text-success" ng-if="ext.isInstalled"><i class="fa fa-check" aria-hidden="true"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <div class="panel panel-default" ng-if="selectedExtension">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{selectedExtension.name}} <i class="fa fa-cogs text-danger" aria-hidden="true" ng-if="selectedExtension.official"></i></h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{selectedExtension.description}}</p>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-success" ng-if="!selectedExtension.isInstalled" ng-click="install(selectedExtension)">Install</button>
+                            <button type="button" class="btn btn-warning" ng-if="selectedExtension.isInstalled" ng-click="uninstall(selectedExtension)">Uninstall</button>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Developer Panel</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="ext in extensions | filter:selfFilter">
+                                    {{ext.name}} <i class="fa fa-cogs text-danger" aria-hidden="true" ng-if="ext.official"></i>
+                                    <span class="pull-right text-success" ng-if="ext.live" ng-click="publish(ext, false);"><i class="fa fa-toggle-on" aria-hidden="true"></i></span>
+                                    <span class="pull-right text-danger" ng-if="!ext.live" ng-click="publish(ext, true);"><i class="fa fa-toggle-off" aria-hidden="true"></i></span>
+                                    <span class="pull-right" style="margin-right:10px;" ng-click="edit(ext);"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-success" ng-click="createNew()">Create New</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

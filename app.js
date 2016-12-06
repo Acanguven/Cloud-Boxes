@@ -14,6 +14,7 @@ mongoose.connection.once('open', console.log.bind(console, 'connected to databas
 
 var userRoute = require('./routes/user');
 var fileSystem = require('./routes/filesystem');
+var extensions = require('./routes/extensions');
 var app = express();
 
 
@@ -31,6 +32,7 @@ if (os.hostname().indexOf("DESKTOP-") == 0) {
 /* Routes */
 app.use('/api/user', userRoute);
 app.use('/api/fs', fileSystem);
+app.use('/api/extensions', extensions);
 
 
 // catch 404 and forward to error handler

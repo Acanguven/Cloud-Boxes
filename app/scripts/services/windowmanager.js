@@ -15,6 +15,7 @@ angular.module('CloudBoxes')
         return {
             registerWindow: function ($scope) {
                 runningWindows.push($scope);
+                return { left: 200 + (20 * (runningWindows.length - 1)), top: 50 + (20 * (runningWindows.length - 1)),};
             },
             destroyWindow: function ($scope) {
                 var i = -1;

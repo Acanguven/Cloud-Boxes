@@ -19,8 +19,8 @@ angular.module('CloudBoxes')
                     element[0].style.left = scope.pos.left + "px";
                     element[0].style.top = scope.pos.top + "px";
                     scope.selectionText = "Selected " + scope.targets.length + " items";
-
                     if (scope.targets.length > 0) {
+                       
                         scope.contextfeatures = ExtensionManager.getContextBindings(scope.targets[0].extension);
                     } else {
                         scope.contextfeatures = ExtensionManager.getContextBindings("");

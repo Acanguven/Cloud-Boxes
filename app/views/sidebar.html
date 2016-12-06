@@ -2,8 +2,12 @@
     <div class="step" title="CloudBoxes" ng-class="{'active': activeWindow == 'boxes'}" ng-click="SidebarManager.setActiveWindow('boxes')">
         <img src="/images/logo.png" class="sidebarlogo" />
     </div>
+    <div ng-repeat="window in registeredExtensions" class="step" ng-click="clickSidebar(window)">
+        <img ng-if="window.img" ng-src="{{window.img}}" class="sidebarlogo" />
+        <i ng-if="window.fa" ng-class="window.fa" class="sidebarfa fa"></i>
+    </div>
     <div ng-repeat="window in runningWindows" class="step" ng-class="{'running':!window.minimized}" title="{{window.window.title}}" ng-click="window.minimized = !window.minimized;">
-        <img ng-if="window.window.img" src="/images/logo.png" class="sidebarlogo" />
+        <img ng-if="window.window.img" ng-src="{{window.window.img}}" class="sidebarlogo" />
         <i ng-if="window.window.fa" ng-class="window.window.fa" class="sidebarfa fa" ></i>
     </div>
 </div>

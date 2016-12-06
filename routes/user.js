@@ -1,4 +1,5 @@
 ﻿var User = require("../models/user.js");
+var Extension = require("../models/extension.js");
 var jwt = require('jsonwebtoken');
 var TOKEN_KEY = "nevergiveup44";
 var express = require('express');
@@ -40,7 +41,7 @@ function verifyTokenDetectUser(req, res, next) {
 
         User.findOne({
             _id: decoded._id
-        }).exec(function (err, user) {
+        }).populate("extensions").exec(function (err, user) {
             if (err || !user || user.banned) {
                 res.send(200, {
                     message: "Token user does not exist"
@@ -100,6 +101,12 @@ router.get('/continueTokenSession', verifyTokenDetectUser, function (req, res, n
     });
 });
 
+router.post('/updateExtensions', verifyTokenDetectUser, function (req, res, next) {
+    req.user.extensions = req.body;
+    req.user.save();
+    res.send(200);
+});
+
 router.post('/login', function (req, res, next) {
     req.checkBody('username', 'Invalid username').notEmpty();
     req.checkBody('password', 'Invalid password').notEmpty();
@@ -110,7 +117,7 @@ router.post('/login', function (req, res, next) {
             res.send('There have been validation errors: ' + util.inspect(result.array()), 400);
             return;
         } else {
-            User.findOne({ username: req.body.username }).exec(function (err, user) {
+            User.findOne({ username: req.body.username }).populate("extensions").exec(function (err, user) {
                 if (!err && user) {
                     if (user.validPassword(req.body.password)) {
                         var token = tokenizeUser(user);

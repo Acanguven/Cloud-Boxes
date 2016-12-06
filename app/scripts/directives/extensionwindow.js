@@ -112,7 +112,9 @@ angular.module('CloudBoxes')
                     scope.windowStatus = type;
                 }
 
-                Windowmanager.registerWindow(scope);
+                var positionInit = Windowmanager.registerWindow(scope);
+                element.css("left", positionInit.left);
+                element.css("top", positionInit.top);
                 scope.$on("$destroy", function () {
                     Windowmanager.destroyWindow(scope);
                 });

@@ -75,6 +75,102 @@ router.post('/getPathFolders', verifyTokenDetectUser, function (req, res, next) 
     });
 });
 
+router.post('/readEncoded', verifyTokenDetectUser, function (req, res, next) {
+    req.checkBody('filepath', 'Invalid folder').notEmpty();
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            res.send('There have been validation errors: ' + util.inspect(result.array()), 400);
+            return;
+        } else {
+            var userDirectory = req.user.username;
+            var targetFolder = "userfolder/" + userDirectory + req.body.filepath;
+            fs.exists(targetFolder, function (e) {
+                if (e) {
+                    res.send(200, base64_encode(targetFolder));
+                }
+            })
+        }
+    });
+});
+
+router.post('/readText', verifyTokenDetectUser, function (req, res, next) {
+    req.checkBody('filepath', 'Invalid folder').notEmpty();
+    req.checkBody('format', 'Invalid format').notEmpty();
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            res.send('There have been validation errors: ' + util.inspect(result.array()), 400);
+            return;
+        } else {
+            var userDirectory = req.user.username;
+            var targetFolder = "userfolder/" + userDirectory + req.body.filepath;
+            fs.exists(targetFolder, function (e) {
+                if (e) {
+                    fs.readFile(targetFolder, req.body.format, function (err, data) {
+                        res.send(200, data);
+                    });
+                }
+            })
+        }
+    });
+});
+
+router.post('/saveText', verifyTokenDetectUser, function (req, res, next) {
+    req.checkBody('filepath', 'Invalid file').notEmpty();
+    req.checkBody('format', 'Invalid format').notEmpty();
+    req.checkBody('data', 'Invalid data').notEmpty();
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            res.send('There have been validation errors: ' + util.inspect(result.array()), 400);
+            return;
+        } else {
+            var userDirectory = req.user.username;
+            var targetFolder = "userfolder/" + userDirectory + req.body.filepath;
+            fs.writeFile(targetFolder, req.body.data, req.body.format, function (err) {
+                res.send(200);
+            });
+        }
+    });
+});
+
+router.post('/createFile', verifyTokenDetectUser, function (req, res, next) {
+    req.checkBody('filepath', 'Invalid file').notEmpty();
+
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            res.send('There have been validation errors: ' + util.inspect(result.array()), 400);
+            return;
+        } else {
+            var userDirectory = req.user.username;
+            var targetFolder = "userfolder/" + userDirectory + req.body.filepath;
+            fs.open(targetFolder, "wx", function (err, fd) {
+                fs.close(fd, function (err) {
+                    res.send(200);
+                });
+            });
+        }
+    });
+});
+
+
+router.post('/createFolder', verifyTokenDetectUser, function (req, res, next) {
+    req.checkBody('filepath', 'Invalid file').notEmpty();
+
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            res.send('There have been validation errors: ' + util.inspect(result.array()), 400);
+            return;
+        } else {
+            var userDirectory = req.user.username;
+            var targetFolder = "userfolder/" + userDirectory + req.body.filepath;
+            fs.open(targetFolder, "wx", function (err, fd) {
+                fs.close(fd, function (err) {
+                    res.send(200);
+                });
+            });
+        }
+    });
+});
+
 function item(obj, path, cb) {
     var newItem = {};
     newItem.extension = "";
@@ -87,13 +183,14 @@ function item(obj, path, cb) {
             return obj;
         }
     })();
-    newItem.path = "/" + obj;
-    
+    var folderPath = path.split("/");
+    folderPath.splice(0, 2);
+    newItem.path = "/" + folderPath.join("/") + obj;
     newItem.position = {
         refWidth: 0,
         refHeight: 0,
-        x: Math.floor(Math.random() * 1000) + 1  ,
-        y: Math.floor(Math.random() * 600) + 1  
+        x: Math.floor(Math.random() * 1000) + 1,
+        y: Math.floor(Math.random() * 600) + 1
     }
     fs.stat(path + obj, function (err, stt) {
         if (stt.isDirectory()) {
@@ -111,5 +208,17 @@ function itemConstructor(obj, path, cb) {
         cb(d);
     });
 }
+
+function base64_encode(file) {
+    var bitmap = fs.readFileSync(file);
+    return new Buffer(bitmap).toString('base64');
+}
+
+function base64_decode(base64str, file) {
+    var bitmap = new Buffer(base64str, 'base64');
+    fs.writeFileSync(file, bitmap);
+}
+
+
 
 module.exports = router;

@@ -20,9 +20,11 @@
     <Content Include="app\scripts\directives\item.js" />
     <Content Include="app\scripts\services\iconmanager.js" />
     <Content Include="app\scripts\services\cssmanager.js" />
+    <Content Include="app\scripts\services\windowmanager.js" />
     <Compile Include="models\extension.js" />
     <Compile Include="models\preferences.js" />
     <Compile Include="models\user.js" />
+    <Compile Include="routes\extensions.js" />
     <Compile Include="routes\filesystem.js" />
     <Compile Include="routes\user.js" />
     <Content Include=".yo-rc.json" />

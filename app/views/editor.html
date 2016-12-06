@@ -1,7 +1,7 @@
 <div class="editorInner" ng-controller="EditorCtrl">
     <div class="row">
         <div class="col-md-12">
-            <h3>Extension Editor</h3>
+            <h3>Extension Editor <small ng-if="isOnlineData()">Editing: {{initName}}</small></h3>
         </div>
     </div>
     <div class="row">
@@ -36,10 +36,12 @@
     <div class="row">
         <div class="col-md-12">
             <button class="btn btn-success pull-right" style="margin-left:10px;" ng-click="try()">Try!</button>
-            <button class="btn btn-warning pull-right">Publish!</button>
+            <button class="btn btn-warning pull-right" ng-if="isOnlineData()">Publish!</button>
+            <button class="btn btn-default" ng-click="saveOnline()">Save Online</button>
             <button class="btn btn-default" ng-click="saveDraft()">Save as draft</button>
             <button class="btn btn-default" ng-click="loadDraft()">Load from draft</button>
             <button class="btn btn-default" ng-click="loadExample()">Load example</button>
+            <button class="btn btn-default" ng-click="createNew()">Create New</button>
             <input id="fileinput" style="visibility:hidden;" type="file" accept=".acg">
         </div>
     </div>

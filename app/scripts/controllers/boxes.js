@@ -66,7 +66,7 @@ angular.module('CloudBoxes')
             $element.injector().invoke(function ($compile, $rootScope) {
                 var newScope = $scope.$new(true);
                 newScope.args = params.args;
-                $element.append($compile("<" + params.id + ">" + "</" + params.id + ">")(newScope));
+                $element.append($compile("<" + "d" + params.id + ">" + "</" + "d" + params.id + ">")(newScope));
             });
         });
     });

@@ -5,7 +5,7 @@ html, body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    cursor:default;
+    cursor: default;
 }
 
 .row {
@@ -198,54 +198,54 @@ body {
     Sidebar
 
 */
-.sidebar{
-    height:100%;
-    width:40px;
-    float:left;
-    background-color:#444;
-    text-align:center;
-    z-index:13;
-    position:relative;
+.sidebar {
+    height: 100%;
+    width: 40px;
+    float: left;
+    background-color: #444;
+    text-align: center;
+    z-index: 13;
+    position: relative;
 }
 
-.sidebar .step{
-    height: 40px;
-    padding: 5px;
-    cursor:pointer;
-}
+    .sidebar .step {
+        height: 40px;
+        padding: 5px;
+        cursor: pointer;
+    }
 
-.sidebar .step:first-child{
-    padding-top: 5px;
-}
+        .sidebar .step:first-child {
+            padding-top: 5px;
+        }
 
-.sidebar .sidebarfa{
-    padding-top:4px !important;
-}
+    .sidebar .sidebarfa {
+        padding-top: 4px !important;
+    }
 
-.sidebar .step:hover {
-    background-color:#555;
-}
+    .sidebar .step:hover {
+        background-color: #555;
+    }
 
-.sidebar .step .sidebarlogo{
-    width:100%;
-}
+    .sidebar .step .sidebarlogo {
+        width: 100%;
+    }
 
-.sidebar .active{
-    background-color: #666;
-}
+    .sidebar .active {
+        background-color: #666;
+    }
 
-.sidebar .running{
-    background-color: rgba(104, 145, 162, 0.6);
-}
+    .sidebar .running {
+        background-color: rgba(104, 145, 162, 0.6);
+    }
 
-.sidebar .runningblurred{
-    background-color: rgba(104, 145, 162, 0.2);
-}
+    .sidebar .runningblurred {
+        background-color: rgba(104, 145, 162, 0.2);
+    }
 
-.sidebar .step i{
-    padding-top:8px;
-    font-size: 25px;
-}
+    .sidebar .step i {
+        padding-top: 8px;
+        font-size: 25px;
+    }
 
 /*
 
@@ -253,37 +253,37 @@ body {
 
 */
 
-.speechanalyzer{
+.speechanalyzer {
     position: fixed;
     width: 500px;
     height: 41px;
     bottom: 30px;
     left: 50%;
     margin-left: -250px; /* Negative half of width. */
-    background-color:white;
-    border-radius:6px;
-    border:1px solid #666;
-    color:black;
-    padding:9px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #666;
+    color: black;
+    padding: 9px;
 }
 
-.speechanalyzer input{
-    border:none;
-    width:100%;
-    color:red;
-}
+    .speechanalyzer input {
+        border: none;
+        width: 100%;
+        color: red;
+    }
 
-.speechanalyzer i{
-    position: absolute;
-    top: 9px;
-    font-size: 25px;
-    color: #6982EF;
-    right: 10px;
-}
+    .speechanalyzer i {
+        position: absolute;
+        top: 9px;
+        font-size: 25px;
+        color: #6982EF;
+        right: 10px;
+    }
 
-.speechanalyzer .validSearch{
-    color:green;
-}
+    .speechanalyzer .validSearch {
+        color: green;
+    }
 
 /*
 
@@ -292,20 +292,20 @@ body {
 */
 
 .fade.ng-hide {
-  opacity: 0;
+    opacity: 0;
 }
 
 .fade.ng-hide-remove,
 .fade.ng-hide-add {
-  display: block !important;
+    display: block !important;
 }
 
 .fade.ng-hide-remove {
-  transition: all linear 1000ms;
+    transition: all linear 1000ms;
 }
 
 .fade.ng-hide-add {
-  transition: all linear 500ms;
+    transition: all linear 500ms;
 }
 
 /*
@@ -314,9 +314,9 @@ body {
 
 */
 
-.desktopBoxes{
-    float:left;
-    height:100%;
+.desktopBoxes {
+    float: left;
+    height: 100%;
     /* Firefox */
     width: -moz-calc(100% - 40px);
     /* WebKit */
@@ -328,200 +328,199 @@ body {
 }
 
 .desktopfolder {
-    min-width:48px;
-    max-width:80px;
+    min-width: 48px;
+    max-width: 80px;
     resize: none;
-    position:absolute;
-    padding:4px;
-    border-radius:6px;
-    text-align:center;
+    position: absolute;
+    padding: 4px;
+    border-radius: 6px;
+    text-align: center;
 }
 
 .desktopFile {
-    color:white !important;
+    color: white !important;
 }
 
-.windowContent .desktopfolder p{
-    color:black;
-    text-align:center;
+.windowContent .desktopfolder p {
+    color: black;
+    text-align: center;
     text-shadow: none !important;
 }
 
-.windowContent .desktopfolder{
-    position:initial;
+.windowContent .desktopfolder {
+    position: initial;
 }
 
 .desktopfolder:hover {
-    background-color:rgba(50, 230, 50, 0.1);
+    background-color: rgba(50, 230, 50, 0.1);
 }
 
-.desktopfolder.selected{
-    background-color:rgba(50, 230, 50, 0.2);
+.desktopfolder.selected {
+    background-color: rgba(50, 230, 50, 0.2);
 }
 
 .disable-select {
-  -webkit-user-select: none;  
-  -moz-user-select: none;    
-  -ms-user-select: none;      
-  user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .desktopfolder.dragging {
-    cursor:move;
+    cursor: move;
 }
 
-.desktopfolder i{
-    font-size:44px;
+.desktopfolder i {
+    font-size: 44px;
 }
 
-.desktopfolder p{
-    color:white;
-    text-align:center;
+.desktopfolder p {
+    color: white;
+    text-align: center;
     text-shadow: 0px 0px 3px #333;
 }
 
-#deskTopElement{
-    width:100%;
-    height:100%;
-    position:relative;
+#deskTopElement {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-.selectorRect{
-    background-color:rgba(50, 50, 180, 0.3);
-    position:absolute;
-    left:0px;
-    top:0px;
-    width:1px;
-    height:1px;
-    z-index:9999;
+.selectorRect {
+    background-color: rgba(50, 50, 180, 0.3);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1px;
+    height: 1px;
+    z-index: 9999;
 }
 
-.context{
-    position:absolute;
-    background-color:white;
-    min-width:150px;
-    min-height:50px;
-    z-index:200;
-    color:#333;
-    box-shadow:0px 0px 1px 0px #333;
+.context {
+    position: absolute;
+    background-color: white;
+    min-width: 150px;
+    min-height: 50px;
+    z-index: 200;
+    color: #333;
+    box-shadow: 0px 0px 1px 0px #333;
 }
 
-.context .contextLine{
-    padding-left:3px;
-    padding-right:3px;
-    font-size:15px;
-    height:30px;
-    padding:4px;
-    cursor:default;
-}
+    .context .contextLine {
+        padding-left: 3px;
+        padding-right: 3px;
+        font-size: 15px;
+        height: 30px;
+        padding: 4px;
+        cursor: default;
+    }
 
-.context .contextLine:not(:first-child):hover{
-    background-color:rgba(68, 68, 68, 0.3);
-}
+        .context .contextLine:not(:first-child):hover {
+            background-color: rgba(68, 68, 68, 0.3);
+        }
 
-.context .contextLine:not(:first-child){
-    cursor:pointer;
-}
+        .context .contextLine:not(:first-child) {
+            cursor: pointer;
+        }
 
-.context .contextLine:first-child{
-    text-align:center;
-    font-size:13px;
-    height:25px;
-}
+        .context .contextLine:first-child {
+            text-align: center;
+            font-size: 13px;
+            height: 25px;
+        }
 
-.context .contextLine span{
-    display:inline-block;
-    width: 25px;
-}
+        .context .contextLine span {
+            display: inline-block;
+            width: 25px;
+        }
 
 
-.context .contextLine img{
-    height:20px;
-    width:20px;
-}
+        .context .contextLine img {
+            height: 20px;
+            width: 20px;
+        }
 
-.context .contextLine:not(:last-child){
-    border-bottom:1px solid #ccc;
-}
+        .context .contextLine:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+        }
 
-.extensionWindow{
+.extensionWindow {
     background-color: white;
     position: absolute;
     min-width: 600px;
     min-height: 500px;
-    color:#333;
-    left:200px;
-    top:50px;
-    box-shadow:0px 0px 3px 0px #ccc;
+    color: #333;
+    box-shadow: 0px 0px 3px 0px #ccc;
 }
 
-.extensionWindow.maximized{
-    height: calc(100% - 40px);
-    left: 0px !important;
-    top: 0px !important;
-    width: 100%;
-    z-index: 5;
-}
+    .extensionWindow.maximized {
+        height: calc(100% - 40px);
+        left: 0px !important;
+        top: 0px !important;
+        width: 100%;
+        z-index: 5;
+    }
 
-.extensionWindow .header{
-    border-bottom: 1px solid #ccc;
-    height: 25px;
-}
+    .extensionWindow .header {
+        border-bottom: 1px solid #ccc;
+        height: 25px;
+    }
 
-.extensionWindow .header *{
-    float: left;
-    font-size: 13px;
-    margin-top: 5px;
-}
+        .extensionWindow .header * {
+            float: left;
+            font-size: 13px;
+            margin-top: 5px;
+        }
 
-.extensionWindow .header .title{
-    color:#333;
-}
+        .extensionWindow .header .title {
+            color: #333;
+        }
 
-.extensionWindow .header i{
-    margin-top: 4px;
-    font-size: 18px;
-    margin-right: 5px;
-    margin-left:5px;
-}
+        .extensionWindow .header i {
+            margin-top: 4px;
+            font-size: 18px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
 
-.extensionWindow .header img{
-    margin-top: 4px;
-    height: 16px;
-    margin-right: 5px;
-    margin-left:5px;
-}
+        .extensionWindow .header img {
+            margin-top: 4px;
+            height: 16px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
 
-.extensionWindow .header .options{
-    float: right;
-    margin-top: 0px;
-    height: 100%;
-    color:#333;
-}
+        .extensionWindow .header .options {
+            float: right;
+            margin-top: 0px;
+            height: 100%;
+            color: #333;
+        }
 
-.extensionWindow .header .options span{
-    margin-top: 0px;
-    padding: 2px;
-    height: 100%;
-}
-.extensionWindow .header .options span:hover{
-    background-color: #ccc;
-}
+            .extensionWindow .header .options span {
+                margin-top: 0px;
+                padding: 2px;
+                height: 100%;
+            }
 
-.extensionWindow .header .options span:last-child:hover{
-    background-color: red;
-    color:white;
-}
+                .extensionWindow .header .options span:hover {
+                    background-color: #ccc;
+                }
 
-.extensionWindow .header .options span i{
-    font-size:12px;
-}
+                .extensionWindow .header .options span:last-child:hover {
+                    background-color: red;
+                    color: white;
+                }
 
-.extensionWindow .title{
-    color:red;
-}
+                .extensionWindow .header .options span i {
+                    font-size: 12px;
+                }
 
-.windowContent{
+    .extensionWindow .title {
+        color: red;
+    }
+
+.windowContent {
     padding: 5px;
     min-height: 475px;
     position: relative;
@@ -533,19 +532,18 @@ body {
 
 */
 
-.upperBar{
-    height:40px;
-    float:left;
-    background: -moz-linear-gradient(left,  rgba(68,68,68,1) 0%, rgba(68,68,68,0.49) 10%, rgba(125,185,232,0) 100%);
-    background: -webkit-linear-gradient(left,  rgba(68,68,68,1) 0%,rgba(68,68,68,0.49) 10%,rgba(125,185,232,0) 100%);
-    background: linear-gradient(to right,  rgba(68,68,68,1) 0%,rgba(68,68,68,0.49) 10%,rgba(125,185,232,0) 100%);
+.upperBar {
+    height: 40px;
+    float: left;
+    background: -moz-linear-gradient(left, rgba(68,68,68,1) 0%, rgba(68,68,68,0.49) 10%, rgba(125,185,232,0) 100%);
+    background: -webkit-linear-gradient(left, rgba(68,68,68,1) 0%,rgba(68,68,68,0.49) 10%,rgba(125,185,232,0) 100%);
+    background: linear-gradient(to right, rgba(68,68,68,1) 0%,rgba(68,68,68,0.49) 10%,rgba(125,185,232,0) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#444444',GradientType=1 );
-    text-align:center;
-    display:block;
-    z-index:12;
-    position:relative;
-    opacity:1;
-
+    text-align: center;
+    display: block;
+    z-index: 12;
+    position: relative;
+    opacity: 1;
     /* Firefox */
     width: -moz-calc(100% - 40px);
     /* WebKit */
@@ -556,34 +554,33 @@ body {
     width: calc(100% - 40px);
 }
 
-.topBar .step{
+.topBar .step {
     height: 40px;
     padding: 12px;
-    cursor:pointer;
-    float:left;
-    min-width:40px;
-
+    cursor: pointer;
+    float: left;
+    min-width: 40px;
 }
 
-.topBar .step:hover {
-    background-color:#555;
-}
+    .topBar .step:hover {
+        background-color: #555;
+    }
 
-.topBar .step .sidebarlogo{
-    width:100%;
-}
+    .topBar .step .sidebarlogo {
+        width: 100%;
+    }
 
-.topBar .active{
+.topBar .active {
     background-color: #666;
 }
 
-.topBar .step i{
+.topBar .step i {
     font-size: 18px;
 }
 
 .topBar .time {
-    float:right;
-    margin-right:10px;
+    float: right;
+    margin-right: 10px;
 }
 
 /*
@@ -592,10 +589,10 @@ body {
 
 */
 
-.editor{
-    background-color:white;
-    float:left;
-    height:100%;
+.editor {
+    background-color: white;
+    float: left;
+    height: 100%;
     /* Firefox */
     width: -moz-calc(100% - 40px);
     /* WebKit */
@@ -604,19 +601,19 @@ body {
     width: -o-calc(100% - 40px);
     /* Standard */
     width: calc(100% - 40px);
-    height:100%;
-    color:#333;
+    height: 100%;
+    color: #333;
 }
 
-.editorInner{
-    padding:10px;
+.editorInner {
+    padding: 10px;
 }
 
 .CodeMirror {
-  height: 100%;
+    height: 100%;
 }
 
-.ei{
+.ei {
     /* Firefox */
     height: -moz-calc(100% - 40px);
     /* WebKit */
@@ -625,4 +622,52 @@ body {
     height: -o-calc(100% - 40px);
     /* Standard */
     height: calc(100% - 40px);
+}
+
+
+/*
+
+    Library
+
+*/
+
+.library {
+    background-color: white;
+    float: left;
+    height: 100%;
+    overflow-y: scroll;
+    /* Firefox */
+    width: -moz-calc(100% - 40px);
+    /* WebKit */
+    width: -webkit-calc(100% - 40px);
+    /* Opera */
+    width: -o-calc(100% - 40px);
+    /* Standard */
+    width: calc(100% - 40px);
+    height: 100%;
+    color: #333;
+}
+
+.libraryinner {
+    padding: 10px;
+}
+
+.libfixed {
+    position: fixed;
+    width: 40%;
+}
+
+.library .list-group-item i:hover {
+    cursor: pointer;
+}
+
+
+.library .list-group-item i {
+    font-size: 18px;
+}
+
+.liveexts:hover {
+    cursor: pointer;
+    background-color: #337ab7;
+    color:white;
 }
