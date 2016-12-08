@@ -139,7 +139,7 @@ angular.module('CloudBoxes')
         }
 
         this.createWindow = function (params) {
-            $rootScope.$emit('createWindow', params);
+            $injector.get("$rootScope").$emit('createWindow', params);
         }
 
         var self = this;
