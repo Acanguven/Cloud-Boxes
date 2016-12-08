@@ -97,6 +97,7 @@ router.post('/edit/:id', verifyTokenDetectUser, function (req, res, next) {
                 extension[x] = req.body[x];
             }
             extension.save(function (err) {
+                console.log(err);
                 if (!err) {
                     res.send(200, { success: true });
                 } else {
