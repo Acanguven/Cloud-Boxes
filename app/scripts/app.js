@@ -27,7 +27,7 @@ angular
             $compileProvider: $compileProvider,
             $provide: $provide
         };
-    }).config(function ($httpProvider) {
+    }).config(['$httpProvider',function ($httpProvider) {
         $httpProvider.interceptors.push(function ($q) {
             return {
                 'request': function (config) {
@@ -77,7 +77,7 @@ angular
                 }
             }
         });
-    }).run(function ($http, $rootScope, $timeout, UserFactory) {
+    }]).run(['$http', '$rootScope', '$timeout', 'UserFactory',function ($http, $rootScope, $timeout, UserFactory) {
         if (localStorage.getItem('token')) {
             $http.get("/api/user/continueTokenSession").then(function (res) {
                 if (res.data.token) {
@@ -85,4 +85,4 @@ angular
                 }
             });
         }
-    })
+    }])
