@@ -1,5 +1,5 @@
 <div id="overlay">
-    <div ng-include="'views/login.html'" ng-controller="LoginCtrl" ng-if="!UserFactory.userLoggedIn()"></div>
+    <div class="loginWindow" ng-include="'views/login.html'" ng-controller="LoginCtrl" ng-if="!UserFactory.userLoggedIn()"></div>
     <div class="mainArea" ng-class="{'blur': !UserFactory.userLoggedIn()}">
         <div class="sidebar" ng-include="'views/sidebar.html'" ng-controller="SidebarCtrl"></div>
         <div class="upperBar" ng-include="'views/topbar.html'"></div>

@@ -63,7 +63,6 @@ router.post('/register', function (req, res, next) {
     req.checkBody('username', 'Invalid username').notEmpty().isAlpha();
     req.checkBody('password', 'Invalid password').notEmpty();
     req.checkBody('name', 'Invalid name').notEmpty();
-    req.checkBody('surname', 'Invalid surname').notEmpty();
 
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {

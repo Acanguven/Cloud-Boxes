@@ -34,6 +34,14 @@ angular.module('CloudBoxes')
                     }
                 });
             },
+            register: function (username, password, name) {
+                $http.post("/api/user/register", { username: username, password: password, name:name }).then(function (res) {
+                    if (res.data.token) {
+                        user = res.data;
+                        updateExtensions();
+                    }
+                });
+            },
             addExtension: function (extension) {
                 user.extensions.push(extension);
                 $http.post("/api/user/updateExtensions", user.extensions);
