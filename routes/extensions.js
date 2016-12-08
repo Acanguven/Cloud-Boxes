@@ -93,7 +93,6 @@ router.post('/new', verifyTokenDetectUser, function (req, res, next) {
 
 router.post('/edit/:id', verifyTokenDetectUser, function (req, res, next) {
     Extension.findOne({ _id: req.params.id }).exec(function (err, extension) {
-        console.log(extension,0);
         if (!err && extension) {
             for (var x in req.body) {
                 extension[x] = req.body[x];

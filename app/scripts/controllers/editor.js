@@ -128,7 +128,6 @@ angular.module('CloudBoxes')
                 $scope.$apply(function () {
                     var parsedJson = JSON.parse(data);
                     $scope.extension.category = parsedJson.category;
-                    $scope.extension._id = parsedJson._id;
                     $scope.extension.name = parsedJson.name;
                     $scope.extension.html = parsedJson.html;
                     $scope.extension.css = parsedJson.css;
@@ -152,7 +151,6 @@ angular.module('CloudBoxes')
 
         $scope.loadExample = function () {
             $http.get("/scripts/tazdingo.acg").then(function (res) {
-                $scope.extension._id = res.data._id;
                 $scope.extension.name = res.data.name;
                 $scope.extension.html = res.data.html;
                 $scope.extension.css = res.data.css;
