@@ -81,7 +81,8 @@ router.post('/register', function (req, res, next) {
                             name: nuser.name,
                             surname: nuser.surname,
                             extensions: nuser.extensions,
-                            preferences: nuser.preferences
+                            preferences: nuser.preferences,
+                            _id: nuser._id
                         });
                     });
                 }
@@ -96,7 +97,8 @@ router.get('/continueTokenSession', verifyTokenDetectUser, function (req, res, n
         name: req.user.name,
         surname: req.user.surname,
         extensions: req.user.extensions,
-        preferences: req.user.preferences
+        preferences: req.user.preferences,
+        _id: req.user._id
     });
 });
 
@@ -125,7 +127,8 @@ router.post('/login', function (req, res, next) {
                             name: user.name,
                             surname: user.surname,
                             extensions: user.extensions,
-                            preferences: user.preferences
+                            preferences: user.preferences,
+                            _id: user._id
                         });
                     }
                 } else {
