@@ -9,7 +9,7 @@
  */
 
 angular.module('CloudBoxes')
-    .factory('ExtensionManager', ['$rootScope', '$injector', 'Cssmanager',function ($rootScope, $injector, Cssmanager) {
+    .factory('ExtensionManager', ['$rootScope', '$injector', 'Cssmanager', function ($rootScope, $injector, Cssmanager) {
         var extensionList = {};
         var bindings = [];
         var sidebars = [];
@@ -23,8 +23,8 @@ angular.module('CloudBoxes')
             var queueLen = angular.module('CloudBoxes')._invokeQueue.length;
             if (extension.js.window) {
                 if (!extensionList[extension._id]) {
-                    
-                    angular.module('CloudBoxes').directive("d"+extension._id, function (ExtensionManager, $injector) {
+
+                    angular.module('CloudBoxes').directive("d" + extension._id, ['ExtensionManager', '$injector', function (ExtensionManager, $injector) {
                         return {
                             template: "<div class='extensionWindow' extensionwindow ng-show='!minimized' ng-class=\"{'maximized':(windowStatus==2)}\"><div class='header'><i ng-if='window.fa && !window.img' class='fa' ng-class='window.fa'></i><img ng-if='window.img' ng-src='{{window.img}}'/><div class='title'>{{window.title}}</div><div class='options'><span ng-click='minimize()'><i class='fa fa-window-minimize' aria-hidden='true'></i></span><span ng-click='windowStatusUpdate(2)' ng-if='windowStatus != 2'><i class='fa fa-window-maximize' aria-hidden='true'></i></span><span  ng-click='windowStatusUpdate(1)' ng-if='windowStatus == 2'><i class='fa fa-window-restore' aria-hidden='true'></i></span><span  ng-click='windowClose()'><i class='fa fa-times' aria-hidden='true'></i></span></div></div><div class='windowContent' bindhtmlcompile='template'></div></div>",
                             restrict: 'E',
@@ -36,7 +36,7 @@ angular.module('CloudBoxes')
                                 ExtensionManager.getExtensionData(extension._id).js(scope, scopeElement, attrs, $injector);
                             }
                         };
-                    });
+                    }]);
 
                     var queue = angular.module('CloudBoxes')._invokeQueue;
                     for (var i = queueLen; i < queue.length; i++) {

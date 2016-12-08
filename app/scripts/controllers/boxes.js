@@ -8,7 +8,7 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('BoxesCtrl', ['$rootScope', '$scope', 'StorageLibrary', '$element', '$interval', '$timeout', '$compile',function ($rootScope, $scope, StorageLibrary, $element, $interval, $timeout, $compile) {
+    .controller('BoxesCtrl', ['$rootScope', '$scope', 'StorageLibrary', '$element', '$interval', '$timeout', '$compile', function ($rootScope, $scope, StorageLibrary, $element, $interval, $timeout, $compile) {
         StorageLibrary.getDesktopItems(function (list) {
             $scope.desktopItems = list;
         });
@@ -63,10 +63,10 @@ angular.module('CloudBoxes')
 
 
         $rootScope.$on('createWindow', function (event, params) {
-            $element.injector().invoke(function ($compile, $rootScope) {
+            $element.injector().invoke(['$compile', '$rootScope', function ($compile, $rootScope) {
                 var newScope = $scope.$new(true);
                 newScope.args = params.args;
                 $element.append($compile("<" + "d" + params.id + ">" + "</" + "d" + params.id + ">")(newScope));
-            });
+            }]);
         });
     }]);

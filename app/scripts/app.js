@@ -32,7 +32,7 @@ angular
             return {
                 'request': function (config) {
                     /* Development Settings */
-                    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+                    if ((location.hostname === "localhost" || location.hostname === "127.0.0.1") && location.port != "3000") {
                         var restUrl = location.origin + ":3000";
                         if (config.url.indexOf("views") == -1 && location.hostname == "localhost" && config.url.indexOf(".acg") == -1) {
                             config.url = restUrl + config.url;
