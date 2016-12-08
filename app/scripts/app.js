@@ -32,9 +32,11 @@ angular
             return {
                 'request': function (config) {
                     /* Development Settings */
-                    var restUrl = location.origin + ":3000";
-                    if (config.url.indexOf("views") == -1 && location.hostname == "localhost" && config.url.indexOf(".acg") == -1) {
-                        config.url = restUrl + config.url;
+                    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+                        var restUrl = location.origin + ":3000";
+                        if (config.url.indexOf("views") == -1 && location.hostname == "localhost" && config.url.indexOf(".acg") == -1) {
+                            config.url = restUrl + config.url;
+                        }
                     }
                     /* Development Settings */
 
