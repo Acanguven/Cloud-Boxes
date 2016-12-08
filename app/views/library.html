@@ -41,7 +41,7 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="ext in extensions | filter:selfFilter">
+                                <li class="list-group-item" ng-repeat="ext in extensions" ng-if="selfId == ext.creator">
                                     {{ext.name}} <i class="fa fa-cogs text-danger" aria-hidden="true" ng-if="ext.official"></i>
                                     <span class="pull-right text-success" ng-if="ext.live" ng-click="publish(ext, false);"><i class="fa fa-toggle-on" aria-hidden="true"></i></span>
                                     <span class="pull-right text-danger" ng-if="!ext.live" ng-click="publish(ext, true);"><i class="fa fa-toggle-off" aria-hidden="true"></i></span>

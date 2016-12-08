@@ -9,9 +9,8 @@
  */
 angular.module('CloudBoxes')
     .controller('LibraryCtrl', ['$http', '$scope', 'UserFactory', 'SidebarManager', '$rootScope', function ($http, $scope, UserFactory, SidebarManager, $rootScope) {
-        $scope.selfFilter = {
-            _id: UserFactory.getUserId()
-        }
+        $scope.selfId = UserFactory.getUserId()
+
         $scope.extensions = [];
         $scope.selectedExtension = null;
         $http.get("/api/extensions/").then(function (res) {
