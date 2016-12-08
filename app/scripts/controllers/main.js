@@ -8,7 +8,7 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('MainCtrl', function ($scope, UserFactory, SidebarManager) {
+    .controller('MainCtrl', ['$scope', 'UserFactory', 'SidebarManager', function ($scope, UserFactory, SidebarManager) {
         $scope.UserFactory = UserFactory;
         $scope.SidebarManager = SidebarManager;
 
@@ -18,4 +18,4 @@ angular.module('CloudBoxes')
         }, function (n, o) {
             $scope.activeWindow = n;
         });
-    });
+    }]);

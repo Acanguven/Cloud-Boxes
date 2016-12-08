@@ -7,7 +7,7 @@
  * # draggable
  */
 angular.module('CloudBoxes')
-    .directive('box', function ($timeout, IconManager, $rootScope) {
+    .directive('box', ['$timeout', 'IconManager', '$rootScope', function ($timeout, IconManager, $rootScope) {
         return {
             replace: true,
             template: "<div class='desktopfolder' ng-class=\"{'selected':model.selected, 'col-md-2':bootstrapped === true}\"><i ng-if='itemIconData.type == \"fa\"' ng-class='itemIconData.data' aria-hidden='true'></i><p>{{model.title}}</p></div>",
@@ -15,7 +15,7 @@ angular.module('CloudBoxes')
             link: function postLink(scope, element, attrs) {
                 element[0].style.left = (scope.model.position.x) + 'px';
                 element[0].style.top = (scope.model.position.y) + 'px';
-                scope.model.selected = false; 
+                scope.model.selected = false;
                 scope.itemIconData = IconManager.getIcon(scope.model.extension);
 
                 scope.$on('selectorRectangle', function (event) {
@@ -63,4 +63,4 @@ angular.module('CloudBoxes')
                 bootstrapped: "="
             }
         };
-    });
+    }]);

@@ -8,7 +8,7 @@
  * Controller of the CloudBoxes
  */
 angular.module('CloudBoxes')
-    .controller('LibraryCtrl', function ($http, $scope, UserFactory, SidebarManager, $rootScope) {
+    .controller('LibraryCtrl', ['$http', '$scope', 'UserFactory', 'SidebarManager', '$rootScope', function ($http, $scope, UserFactory, SidebarManager, $rootScope) {
         $scope.selfFilter = {
             _id: UserFactory.getUserId()
         }
@@ -58,4 +58,4 @@ angular.module('CloudBoxes')
                 $scope.extensions[x].isInstalled = UserFactory.isExtensionInstalled($scope.extensions[x]);
             }
         }
-    });
+    }]);

@@ -8,7 +8,7 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('SpeechanalyzerCtrl', function ($scope,$interval) {
+    .controller('SpeechanalyzerCtrl', ['$scope', '$interval', function ($scope, $interval) {
         $scope.recognizing = false;
         $scope.lastUpdate = Date.now();
         $scope.validSearch = false;
@@ -37,11 +37,11 @@ angular.module('CloudBoxes')
         }
 
         $scope.onerror = function (event, message) {
-            
+
         }
 
         $scope.onstart = function (event) {
-            
+
         }
 
         $interval(function () {
@@ -69,7 +69,7 @@ angular.module('CloudBoxes')
 
                     }
                 }
-            },            
+            },
         ]
 
         $scope.searchValidation = function () {
@@ -107,9 +107,9 @@ angular.module('CloudBoxes')
                 $scope.refreshApi();
                 createData = Date.now();
             }
-        },1000);
+        }, 1000);
 
         $scope.$on("$destroy", function () {
             $scope.recognition.stop();
         });
-    });
+    }]);

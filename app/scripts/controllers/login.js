@@ -8,7 +8,7 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('LoginCtrl', function ($scope, UserFactory) {
+    .controller('LoginCtrl', ['$scope', 'UserFactory', function ($scope, UserFactory) {
 
         $scope.mode = false;
 
@@ -25,4 +25,4 @@ angular.module('CloudBoxes')
         $scope.swapMode = function () {
             $scope.mode = !$scope.mode;
         }
-    });
+    }]);

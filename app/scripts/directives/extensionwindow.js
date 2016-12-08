@@ -7,11 +7,11 @@
  * # extensionwindow
  */
 angular.module('CloudBoxes')
-    .directive('extensionwindow', function ($interval, Windowmanager) {
-		return {
-			restrict: 'A',
-			link: function postLink(scope, element, attrs) {
-				/* Dragging Features */
+    .directive('extensionwindow', ['$interval', 'Windowmanager', function ($interval, Windowmanager) {
+        return {
+            restrict: 'A',
+            link: function postLink(scope, element, attrs) {
+                /* Dragging Features */
 
                 scope.dragging = false;
                 scope.mousedowned = false;
@@ -37,8 +37,8 @@ angular.module('CloudBoxes')
                     }
                 });
 
-				angular.element(element[0].querySelector('.header').querySelector('.options')).bind("mousedown", function(e){
-					e.stopPropagation();
+                angular.element(element[0].querySelector('.header').querySelector('.options')).bind("mousedown", function (e) {
+                    e.stopPropagation();
                 });
 
                 element.bind("mouseup", function (e) {
@@ -118,6 +118,6 @@ angular.module('CloudBoxes')
                 scope.$on("$destroy", function () {
                     Windowmanager.destroyWindow(scope);
                 });
-			}
-    	};
-  	});
+            }
+        };
+    }]);

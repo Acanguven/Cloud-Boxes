@@ -8,7 +8,7 @@
  * Factory in the bireyselApp.
  */
 angular.module('CloudBoxes')
-    .factory('IconManager', function ($rootScope) {
+    .factory('IconManager', ['$rootScope',function ($rootScope) {
         var icons = {};
         icons.__undefined = {
             type: "fa",
@@ -31,4 +31,4 @@ angular.module('CloudBoxes')
                 }
             },
         }
-    });
+    }]);

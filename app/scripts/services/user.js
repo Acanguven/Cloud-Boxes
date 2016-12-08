@@ -8,7 +8,7 @@
  * Factory in the bireyselApp.
  */
 angular.module('CloudBoxes')
-    .factory('UserFactory', function ($http, ExtensionManager) {
+    .factory('UserFactory', ['$http','ExtensionManager',function ($http, ExtensionManager) {
         var user = null;
 
         function updateExtensions() {
@@ -72,4 +72,4 @@ angular.module('CloudBoxes')
                 return user.extensions;
             }
         };
-    });
+    }]);

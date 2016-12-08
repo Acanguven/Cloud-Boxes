@@ -7,7 +7,7 @@
  * # clickable
  */
 angular.module('CloudBoxes')
-    .directive('clickable', function (ExtensionManager) {
+    .directive('clickable', ['ExtensionManager', function (ExtensionManager) {
         return {
             restrict: 'A',
             link: function postLink(scope, element, attrs) {
@@ -47,4 +47,4 @@ angular.module('CloudBoxes')
                 element.bind('click', scope.click);
             }
         };
-    });
+    }]);

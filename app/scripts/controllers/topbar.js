@@ -8,7 +8,7 @@
  * Controller of the CloudBoxes
  */
 angular.module('CloudBoxes')
-    .controller('TopbarCtrl', function ($scope, SidebarManager, $element) {
+    .controller('TopbarCtrl', ['$scope', 'SidebarManager', '$element', function ($scope, SidebarManager, $element) {
         $scope.activeWindow = "";
         $scope.SidebarManager = SidebarManager;
 
@@ -43,4 +43,4 @@ angular.module('CloudBoxes')
                 }
             }
         }
-    });
+    }]);

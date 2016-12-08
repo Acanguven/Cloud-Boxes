@@ -7,7 +7,7 @@
  * # draggable
  */
 angular.module('CloudBoxes')
-    .directive('draggable', function ($interval) {
+    .directive('draggable', ['$interval', function ($interval) {
         return {
             restrict: 'A',
             link: function postLink(scope, element, attrs) {
@@ -94,4 +94,4 @@ angular.module('CloudBoxes')
                 element.bind("mouseup", scope.mouseup);
             }
         };
-    });
+    }]);

@@ -8,7 +8,7 @@
  * Factory in the bireyselApp.
  */
 angular.module('CloudBoxes')
-    .factory('StorageLibrary', function ($http) {
+    .factory('StorageLibrary', ['$http',function ($http) {
 
 
 
@@ -50,4 +50,4 @@ angular.module('CloudBoxes')
                 });
             }
         };
-    });
+    }]);

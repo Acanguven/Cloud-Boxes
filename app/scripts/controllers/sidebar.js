@@ -8,7 +8,7 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('SidebarCtrl', function ($scope, SidebarManager, $element, Windowmanager, ExtensionManager, $timeout) {
+    .controller('SidebarCtrl', ['$scope', 'SidebarManager', 'Windowmanager', 'ExtensionManager', '$timeout', function ($scope, SidebarManager, Windowmanager, ExtensionManager, $timeout) {
         $scope.activeWindow = "";
         $scope.SidebarManager = SidebarManager;
         $scope.runningWindows = Windowmanager.getRunningWindows();
@@ -21,9 +21,9 @@ angular.module('CloudBoxes')
             return SidebarManager.getActiveWindow()
         }, function (n, o) {
             $scope.activeWindow = n;
-            });
+        });
 
         $scope.clickSidebar = function (ext) {
             ext.onclick(ext._id);
         }
-    });
+    }]);

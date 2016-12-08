@@ -8,7 +8,7 @@
  * Controller of the bireyselApp
  */
 angular.module('CloudBoxes')
-    .controller('BoxesCtrl', function ($rootScope, $scope, StorageLibrary, $element, $interval, $timeout, $compile) {
+    .controller('BoxesCtrl', ['$rootScope', '$scope', 'StorageLibrary', '$element', '$interval', '$timeout', '$compile',function ($rootScope, $scope, StorageLibrary, $element, $interval, $timeout, $compile) {
         StorageLibrary.getDesktopItems(function (list) {
             $scope.desktopItems = list;
         });
@@ -69,4 +69,4 @@ angular.module('CloudBoxes')
                 $element.append($compile("<" + "d" + params.id + ">" + "</" + "d" + params.id + ">")(newScope));
             });
         });
-    });
+    }]);

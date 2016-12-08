@@ -9,7 +9,7 @@
  */
 
 angular.module('CloudBoxes')
-    .factory('ExtensionManager', function ($rootScope, $injector, Cssmanager) {
+    .factory('ExtensionManager', ['$rootScope', '$injector', 'Cssmanager',function ($rootScope, $injector, Cssmanager) {
         var extensionList = {};
         var bindings = [];
         var sidebars = [];
@@ -184,7 +184,7 @@ angular.module('CloudBoxes')
                 }
             }
         }
-    });
+    }]);
 
 
 /*

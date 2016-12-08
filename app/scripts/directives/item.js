@@ -7,7 +7,7 @@
  * # item
  */
 angular.module('CloudBoxes')
-    .directive('item', function (IconManager, $rootScope) {
+    .directive('item', ['IconManager', '$rootScope',function (IconManager, $rootScope) {
         return {
             replace: true,
             template: "<div class='desktopfolder' ng-class=\"{'selected':model.selected, 'col-md-2':bootstrapped === true}\"><i ng-if='itemIconData.type == \"fa\"' ng-class='itemIconData.data' aria-hidden='true'></i><p>{{model.title}}</p></div>",
@@ -61,4 +61,4 @@ angular.module('CloudBoxes')
                 bootstrapped: "="
             }
         };
-    });
+    }]);

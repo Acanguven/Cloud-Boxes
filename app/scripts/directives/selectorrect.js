@@ -7,7 +7,7 @@
  * # selectorrect
  */
 angular.module('CloudBoxes')
-    .directive('selectorrect', function ($interval) {
+    .directive('selectorrect', ['$interval',function ($interval) {
         return {
             template: '<div class="selectorRect" ng-show="selectorRect.visible"></div>',
             restrict: 'E',
@@ -130,4 +130,4 @@ angular.module('CloudBoxes')
                 rectangleflag: "="
             }
         };
-    });
+    }]);

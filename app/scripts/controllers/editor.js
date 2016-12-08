@@ -8,7 +8,7 @@
  * Controller of the CloudBoxes
  */
 angular.module('CloudBoxes')
-    .controller('EditorCtrl', function ($scope, $window, ExtensionManager, $http, SidebarManager, $rootScope) {
+    .controller('EditorCtrl', ['$scope', '$window', 'ExtensionManager', '$http', 'SidebarManager', '$rootScope', function ($scope, $window, ExtensionManager, $http, SidebarManager, $rootScope) {
         $scope.initName = "";
 
         $scope.codemirrorInstanceJs = CodeMirror(document.getElementsByClassName("editorInstanceJS")[0], {
@@ -234,4 +234,4 @@ angular.module('CloudBoxes')
             $scope.codemirrorInstanceJs.setValue($scope.extension.js);
             $scope.codemirrorInstanceCss.setValue($scope.extension.css);
         }
-    });
+    }]);
