@@ -24,6 +24,7 @@ angular.module('CloudBoxes')
         $scope.createNew = function () {
             $http.post("/api/extensions/createNew").then(function (res) {
                 $scope.extensions = res.data;
+                console.log($scope.extensions);
             });
         }
 
