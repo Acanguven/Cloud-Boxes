@@ -23,7 +23,7 @@ angular.module('CloudBoxes')
                     cb(res.data);
                 });
             },
-            createFolder: function (path, name) {
+            createFolder: function (path, cb) {
                 $http.post("/api/fs/createFolder", { folderpath: path}).then(function (res) {
                     cb();
                 });
