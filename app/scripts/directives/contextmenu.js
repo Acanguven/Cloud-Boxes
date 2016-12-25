@@ -7,14 +7,14 @@
  * # contextmenu
  */
 angular.module('CloudBoxes')
-    .directive('contextmenu', ['ExtensionManager', function (ExtensionManager) {
+    .directive('contextmenu', ['ExtensionManager','$injector',function (ExtensionManager, $injector) {
         return {
-            template: '<div class="context"><div class="contextLine text-info">{{selectionText}}</div><div class="contextLine" ng-repeat="feature in contextfeatures" ng-click="feature.action(feature.extensionid,targets, path)"><span><img ng-if="feature.img" ng-src="{{feature.img}}"/><i class="fa" ng-class="feature.fa"></i></span>  {{feature.title}}</div></div>',
+            template: '<div class="context"><div class="contextLine text-info">{{selectionText}}</div><div class="contextLine" ng-repeat="feature in contextfeatures" ng-click="feature.action(feature.extensionid,targets, path, inj)"><span><img ng-if="feature.img" ng-src="{{feature.img}}"/><i class="fa" ng-class="feature.fa"></i></span>  {{feature.title}}</div></div>',
             restrict: 'E',
             replace: true,
             link: function postLink(scope, element, attrs) {
                 scope.contextfeatures = [];
-
+                scope.inj = $injector;
                 scope.$watch("pos", function () {
                     element[0].style.left = scope.pos.left + "px";
                     element[0].style.top = scope.pos.top + "px";

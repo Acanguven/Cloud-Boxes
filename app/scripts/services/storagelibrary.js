@@ -10,8 +10,6 @@
 angular.module('CloudBoxes')
     .factory('StorageLibrary', ['$http',function ($http) {
 
-
-
         return {
             getDesktopItems: function (cb) {
                 $http.post("/api/fs/getPathFolders", { folderpath: "/" }).then(function (res) {
@@ -24,7 +22,9 @@ angular.module('CloudBoxes')
                 });
             },
             createFolder: function (path, name) {
-
+                $http.post("/api/fs/createFolder", { folderpath: path}).then(function (res) {
+                    cb();
+                });
             },
             renamePath: function (oldPath, newPath) {
 
@@ -45,7 +45,7 @@ angular.module('CloudBoxes')
                 });
             },
             createFile: function (path, cb) {
-                $http.post("/api/fs/saveText", { filepath: path, format: format, data: data }).then(function (res) {
+                $http.post("/api/fs/createFile", { filepath: path}).then(function (res) {
                     cb();
                 });
             }

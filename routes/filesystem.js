@@ -153,7 +153,7 @@ router.post('/createFile', verifyTokenDetectUser, function (req, res, next) {
 
 
 router.post('/createFolder', verifyTokenDetectUser, function (req, res, next) {
-    req.checkBody('filepath', 'Invalid file').notEmpty();
+    req.checkBody('folderpath', 'Invalid folder').notEmpty();
 
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
@@ -161,12 +161,14 @@ router.post('/createFolder', verifyTokenDetectUser, function (req, res, next) {
             return;
         } else {
             var userDirectory = req.user.username;
-            var targetFolder = "userfolder/" + userDirectory + req.body.filepath;
-            fs.open(targetFolder, "wx", function (err, fd) {
-                fs.close(fd, function (err) {
+            var targetFolder = "userfolder/" + userDirectory + req.body.folderpath;
+            if(!fs.existsSync(targetFolder)){
+                fs.mkdirSync(targetFolder, 0766, function(err){
                     res.send(200);
                 });
-            });
+            }else{
+                res.send(200);
+            }
         }
     });
 });

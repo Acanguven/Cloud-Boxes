@@ -82,7 +82,6 @@ router.post('/new', verifyTokenDetectUser, function (req, res, next) {
     var newExtension = new Extension(req.body);
     newExtension.creator = req.user;
     newExtension.save(function (err, ss) {
-        console.log(err);
         if (!err) {
             res.send(200, { success: true, id: ss._id });
         } else {
