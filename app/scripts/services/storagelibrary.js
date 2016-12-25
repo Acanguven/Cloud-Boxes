@@ -8,9 +8,11 @@
  * Factory in the bireyselApp.
  */
 angular.module('CloudBoxes')
-    .factory('StorageLibrary', ['$http',function ($http) {
-
+    .factory('StorageLibrary', ['$http','$rootScope',function ($http,$rootScope) {
         return {
+            updateDesktop: function (cb) {
+                $rootScope.$broadcast("updateWhatYouShow");
+            },
             getDesktopItems: function (cb) {
                 $http.post("/api/fs/getPathFolders", { folderpath: "/" }).then(function (res) {
                     cb(res.data);

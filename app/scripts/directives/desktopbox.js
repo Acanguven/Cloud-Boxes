@@ -54,7 +54,6 @@ angular.module('CloudBoxes')
                 });
 
                 $rootScope.$on('refreshIcon', function (event, target) {
-                    console.log(IconManager.getIcon(scope.model.extension));
                     scope.itemIconData = IconManager.getIcon(scope.model.extension);
                 });
             },

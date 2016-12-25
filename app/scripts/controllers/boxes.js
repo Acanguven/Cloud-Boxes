@@ -61,6 +61,11 @@ angular.module('CloudBoxes')
             $scope.contextVisible = false;
         });
 
+        $rootScope.$on('updateWhatYouShow', function (event, params) {
+            StorageLibrary.getDesktopItems(function (list) {
+                $scope.desktopItems = list;
+            });
+        });
 
         $rootScope.$on('createWindow', function (event, params) {
             $element.injector().invoke(['$compile', '$rootScope', function ($compile, $rootScope) {
