@@ -22,9 +22,11 @@ angular.module('CloudBoxes')
         }
 
         $scope.createNew = function () {
+            console.log("New")
             $http.post("/api/extensions/createNew").then(function (res) {
+                console.log(res)
+                console.log(res.data);
                 $scope.extensions = res.data;
-                console.log($scope.extensions);
             });
         }
 
