@@ -1,12 +1,10 @@
-# bireysel
+# Cloud Boxes
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+Online operating system in your browser.
 
-## Build & development
+- You can store your files, read them, edit them online.
+- You can develop new applications, games inside your browser.
+- You can even develop the code editor that you use for developing games
+- You can create image editor that works with .png .img extensions.
 
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
+Almost unlimited system for you to customize, improve on the cloud.
